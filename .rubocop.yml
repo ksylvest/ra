@@ -1,0 +1,8 @@
+require:
+  - rubocop-factory_bot
+  - rubocop-rake
+  - rubocop-rspec
+
+AllCops:
+  TargetRubyVersion: 3.2
+  NewCops: enable
