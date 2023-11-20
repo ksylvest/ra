@@ -6,3 +6,12 @@ require:
 AllCops:
   TargetRubyVersion: 3.2
   NewCops: enable
+
+Naming/MethodParameterName:
+  AllowedNames:
+    - r
+    - g
+    - b
+
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: consistent_comma
