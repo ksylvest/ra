@@ -22,6 +22,9 @@ GEM
     bigdecimal (3.1.4)
     concurrent-ruby (1.2.2)
     connection_pool (2.4.1)
+    debug (1.8.0)
+      irb (>= 1.5.0)
+      reline (>= 0.3.1)
     diff-lcs (1.5.0)
     drb (2.2.0)
       ruby2_keywords
@@ -29,6 +32,10 @@ GEM
       activesupport (>= 5.0.0)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
+    io-console (0.6.0)
+    irb (1.9.0)
+      rdoc
+      reline (>= 0.3.8)
     json (2.6.3)
     language_server-protocol (3.17.0.3)
     minitest (5.20.0)
@@ -37,10 +44,16 @@ GEM
     parser (3.2.2.4)
       ast (~> 2.4.1)
       racc
+    psych (5.1.1.1)
+      stringio
     racc (1.7.3)
     rainbow (3.1.1)
     rake (13.1.0)
+    rdoc (6.6.0)
+      psych (>= 4.0.0)
     regexp_parser (2.8.2)
+    reline (0.4.0)
+      io-console (~> 0.5)
     rexml (3.2.6)
     rspec (3.12.0)
       rspec-core (~> 3.12.0)
@@ -82,6 +95,7 @@ GEM
       rubocop-factory_bot (~> 2.22)
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
+    stringio (3.0.9)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.5.0)
@@ -92,6 +106,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  debug
   factory_bot
   ra!
   rake
