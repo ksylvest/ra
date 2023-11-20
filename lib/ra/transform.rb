@@ -3,9 +3,9 @@
 module Ra
   # A transform is represnted with a four by four matrix. These transforms are useful manupulate vectors. For example:
   #
-  #   point = Vector[1, 2, 3, w = 1]
-  #   Ra::Transform.translate(2, 3, 4) * point == Vector[3, 5, 7, w = 1]
-  #   Ra::Transform.scale(1, 2, 3) * point == Vector[1, 4, 9, w = 1]
+  #   p = Vector[1, 2, 3, Ra::Tuple::POINT]
+  #   Ra::Transform.translate(2, 3, 4) * p == Vector[3, 5, 7, Ra::Tupl::POINT]
+  #   Ra::Transform.scale(1, 2, 3) * p == Vector[1, 4, 9, Ra::Tuple::POINT]
   #
   # As a convenience, transforms can also be chained:
   #
