@@ -12,6 +12,10 @@ Naming/MethodParameterName:
     - r
     - g
     - b
+    - w
+    - h
+    - x
+    - y
 
 Style/TrailingCommaInArguments:
   EnforcedStyleForMultiline: consistent_comma
