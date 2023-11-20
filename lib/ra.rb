@@ -7,4 +7,8 @@ loader.setup
 
 # Named for ["Ra"](https://en.wikipedia.org/wiki/Ra).
 module Ra
+  # @return [Ra::Logger]
+  def self.logger
+    @logger ||= Logger.new
+  end
 end
