@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     ra (0.1.0)
+      matrix
       slop
       zeitwerk
 
@@ -39,6 +40,7 @@ GEM
       reline (>= 0.3.8)
     json (2.6.3)
     language_server-protocol (3.17.0.3)
+    matrix (0.4.2)
     minitest (5.20.0)
     mutex_m (0.2.0)
     parallel (1.23.0)

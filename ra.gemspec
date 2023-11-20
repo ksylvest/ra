@@ -24,6 +24,7 @@ Gem::Specification.new do |spec|
 
   spec.metadata['rubygems_mfa_required'] = 'true'
 
+  spec.add_dependency 'matrix'
   spec.add_dependency 'slop'
   spec.add_dependency 'zeitwerk'
 end
