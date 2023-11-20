@@ -9,5 +9,7 @@ gem install ra
 ## Usage
 
 ```sh
-ra
+ra --help
+ra --version
+ra -w 8 -h 8 | convert - sample.avif
 ```
