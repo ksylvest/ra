@@ -3,3 +3,40 @@
 # frozen_string_literal: true
 
 require 'ra'
+require 'slop'
+
+config = Slop.parse(ARGV) do |options|
+  options.banner = 'Usage: ra -w 1024 -h 1280 | convert - render.avif'
+
+  options.integer '-w', '--width', 'width', default: 1280
+  options.integer '-h', '--height', 'height', default: 1024
+  options.integer '-p', '--precision', 'precision', default: 255
+
+  options.on('--help', 'help') do
+    Ra.logger.log(options)
+    exit
+  end
+
+  options.on('--version', 'version') do
+    Ra.logger.log(Ra::VERSION)
+    exit
+  end
+end
+
+canvas = Ra::Canvas.new(
+  w: config[:w],
+  h: config[:h],
+  precision: config[:precision],
+)
+
+canvas.w.times do |x|
+  canvas.h.times do |y|
+    canvas[x, y] = Ra::Color.new(
+      r: Float(x) / canvas.w,
+      g: 0.5,
+      b: Float(y) / canvas.h,
+    )
+  end
+end
+
+Ra.logger.log(canvas.ppm)

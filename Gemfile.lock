@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     ra (0.1.0)
+      slop
       zeitwerk
 
 GEM
@@ -95,6 +96,7 @@ GEM
       rubocop-factory_bot (~> 2.22)
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
+    slop (4.10.1)
     stringio (3.0.9)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
