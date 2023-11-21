@@ -30,6 +30,12 @@ module Ra
         Vector[normal[0], normal[1], normal[2], Ra::Tuple::VECTOR].normalize
       end
 
+      # @param point [Vector]
+      # @return [Color]
+      def color(point:)
+        @material.color(point: transform.inverse * point)
+      end
+
       private
 
       # @param ray [Ra::Ray] local
