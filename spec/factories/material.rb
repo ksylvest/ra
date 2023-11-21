@@ -4,7 +4,7 @@ FactoryBot.define do
   factory :material, class: 'Ra::Material' do
     initialize_with { new(**attributes) }
 
-    color
+    base factory: :color
     ambient { 0.5 }
     diffuse { 0.5 }
     specular { 0.5 }

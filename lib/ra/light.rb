@@ -12,7 +12,7 @@ module Ra
     attr_accessor :intensity, :position
 
     # @param intensity [Ra::Color]
-    # @param position [Ra::Tuple]
+    # @param position [Vector]
     def initialize(intensity:, position:)
       @intensity = intensity
       @position = position
