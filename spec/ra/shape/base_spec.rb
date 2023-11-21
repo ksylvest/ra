@@ -8,6 +8,20 @@ describe Ra::Shape::Base do
   it { expect(shape.material).to be_a(Ra::Material) }
   it { expect(shape.transform).to be_a(Ra::Transform) }
 
+  describe '#color' do
+    subject(:color) { shape.color(point:) }
+
+    let(:shape) { build(:shape, material:) }
+    let(:material) { build(:material) }
+    let(:point) { build(:point) }
+
+    it 'proxies' do
+      allow(material).to receive(:color)
+      color
+      expect(material).to have_received(:color).with(point:)
+    end
+  end
+
   describe '#normal' do
     subject(:normal) { shape.normal(point:) }
 

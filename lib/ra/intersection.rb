@@ -32,5 +32,14 @@ module Ra
     def ==(other)
       t == other.t && ray == other.ray && shape == other.shape
     end
+
+    # @return [Ra::Surface]
+    def surface
+      point = ray.position(t:)
+      eyev = -ray.direction
+      normalv = shape.normal(point:)
+
+      Surface.new(shape:, eyev:, normalv:, point:)
+    end
   end
 end
