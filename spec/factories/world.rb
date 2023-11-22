@@ -4,7 +4,7 @@ FactoryBot.define do
   factory :world, class: 'Ra::World' do
     initialize_with { new(**attributes) }
 
-    light
+    lights { [] }
     shapes { [] }
   end
 end
