@@ -18,6 +18,19 @@ module Ra
   class Transform < ::Matrix
     IDENTITY = identity(4)
 
+    # @param from [Vector]
+    # @param to [Vector]
+    # @param up [Vector]
+    # @return [Ra::Transform]
+    def self.view(from:, to:, up:)
+      f = (to - from).normalize
+      l = Tuple.cross(f, up.normalize)
+      u = Tuple.cross(l, f)
+
+      self[l, u, -f, [0, 0, 0, 1]]
+        .translate(-from[0], -from[1], -from[2])
+    end
+
     # @return [Ra::Transform]
     # @param x [Numeric]
     # @param y [Numeric]

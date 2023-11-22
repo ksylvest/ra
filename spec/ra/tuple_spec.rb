@@ -20,4 +20,13 @@ describe Ra::Tuple do
     it { expect(tuple[2]).to eq(6) }
     it { expect(tuple[3]).to eq(described_class::POINT) }
   end
+
+  describe '.cross' do
+    subject(:cross) { described_class.cross(source, target) }
+
+    let(:source) { build(:vector, x: 1, y: 2, z: 3) }
+    let(:target) { build(:vector, x: 2, y: 3, z: 4) }
+
+    it { expect(cross).to eq(build(:vector, x: -1, y: 2, z: -1)) }
+  end
 end
