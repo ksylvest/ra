@@ -18,7 +18,7 @@ module Ra
 
     # @return [Vector]
     def hpoint
-      point + (normalv * EPSILON)
+      @hpoint ||= point + (normalv * EPSILON)
     end
   end
 end
