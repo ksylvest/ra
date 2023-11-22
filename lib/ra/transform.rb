@@ -123,5 +123,19 @@ module Ra
     def rotate_z(...)
       self * self.class.rotate_z(...)
     end
+
+    # Avoid re-computing a transform inverse by memoizing.
+    #
+    # @return [Ra::Transform]
+    def inverse
+      @inverse ||= super
+    end
+
+    # Avoid re-computing a transform tranpose by memoizing.
+    #
+    # @return [Ra::Transform]
+    def tranpose
+      @tranpose ||= super
+    end
   end
 end
