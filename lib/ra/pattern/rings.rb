@@ -4,27 +4,22 @@ module Ra
   module Pattern
     # A rings pattern that alternates colors using:
     #
-    #   colors[⌊√(point.x² + point.z²)⌋]
+    #   colors[⌊√(u² + v²)⌋]
     class Rings < Base
-      attr_accessor :colors
-
-      # @param colors [Array<Rays::Color>]
-      # @param transform [Rays::Matrix]
-      def initialize(colors:, transform: DEFAULT_TRANSFORM)
-        super(transform:)
+      # @param colors [Array<Ra::Color>]
+      def initialize(colors:)
+        super()
         @colors = colors
       end
 
-      protected
+      # @param point [Vector] <u = 0.0..1.0, v = 0.0..1.0>
+      # @return [Ra::Color]
+      def color(point:)
+        u = point[0]
+        v = point[1]
+        index = Math.sqrt((u**2) + (v**2)).floor
 
-      # @param local_point [Vector]
-      # @return [Rays::Color]
-      def local_color(local_point:)
-        x = local_point[0]
-        z = local_point[2]
-        index = Math.sqrt((x**2) + (z**2)).floor
-
-        colors[index % colors.count]
+        @colors[index % @colors.count]
       end
     end
   end

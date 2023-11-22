@@ -4,28 +4,34 @@ module Ra
   module Pattern
     # A checkers pattern that alternates colors using:
     #
-    #   colors[⌊√(point.x² + point.z²)⌋]
+    #   colors[⌊u * rows⌋ + ⌊v * cols)⌋ % colors.count]
     class Checkers < Base
-      attr_accessor :colors
+      DEFAULT_ROWS = 2
+      DEFAULT_COLS = 2
+      DEFAULT_COLORS = [
+        Color.black,
+        Color.white,
+      ].freeze
 
+      # @param rows [Integer]
+      # @param cols [Integer]
       # @param colors [Array<Ra::Color>]
       # @param transform [Ra::Matrix]
-      def initialize(colors:, transform: Transform::IDENTITY)
-        super(transform:)
+      def initialize(cols: DEFAULT_COLS, rows: DEFAULT_ROWS, colors: DEFAULT_COLORS)
+        super()
+        @rows = rows
+        @cols = cols
         @colors = colors
       end
 
-      protected
-
-      # @param local_point [Vector]
+      # @param point [Vector] <u = 0.0..1.0, v = 0.0..1.0>
       # @return [Ra::Color]
-      def local_color(local_point:)
-        x = local_point[0]
-        y = local_point[1]
-        z = local_point[2]
-        index = x.floor + y.floor + z.floor
+      def color(point:)
+        u = point[0]
+        v = point[1]
+        index = (u * @rows).floor + (v * @cols).floor
 
-        colors[index % colors.count]
+        @colors[index % @colors.count]
       end
     end
   end

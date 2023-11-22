@@ -32,7 +32,22 @@ module Ra
     #
     # A discriminant <0 indicates the ray does not intersect the sphere.
     class Sphere < Base
-      protected
+      # @param point [Vector] <x, y, z, Tuple::POINT>
+      # @return [Vector] <u = 0.0..1.0, v = 0.0..1.0>
+      def uv_point(point:)
+        x = point[0]
+        y = point[1]
+        z = point[2]
+
+        radius = Vector[x, y, z].magnitude
+        theta = Math.atan2(x, z)
+        phi = Math.acos(y / radius)
+
+        u = 1 - ((theta / (2 * Math::PI)) + 0.5)
+        v = 1 - (phi / Math::PI)
+
+        Vector[u, v]
+      end
 
       # @param ray [Ra::Ray] local
       # @return [Array<Numeric>]

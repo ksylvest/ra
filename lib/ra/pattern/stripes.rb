@@ -6,24 +6,20 @@ module Ra
     #
     #   colors[⌊point.x⌋]
     class Stripes < Base
-      attr_accessor :colors
-
       # @param colors [Array<Ra::Color>]
-      # @param transform [Ra::Matrix]
-      def initialize(colors:, transform: Transform::IDENTITY)
-        super(transform:)
+      def initialize(colors:)
+        super()
         @colors = colors
       end
 
-      protected
-
-      # @param local_point [Vector]
+      # @param point [Vector] <u = 0.0..1.0, v = 0.0..1.0>
       # @return [Ra::Color]
-      def local_color(local_point:)
-        x = local_point[0]
-        index = x.floor
+      def color(point:)
+        u = point[0]
+        v = point[1]
+        value = (u + v) / 2
 
-        colors[index % colors.count]
+        @colors[(value * @colors.count).floor % @colors.count]
       end
     end
   end

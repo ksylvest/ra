@@ -8,56 +8,67 @@ describe Ra::Pattern::Rings do
   describe '#color' do
     subject(:color) { rings.color(point:) }
 
-    context 'with a point at x=0.0 y=0.0 z=0.0' do
-      let(:point) { build(:point, x: 0.0, y: 0.0, z: 0.0) }
+    let(:point) { Vector[u, v, 0, Ra::Tuple::POINT] }
+
+    context 'with a point at u = 0.0 / v = 0.0' do
+      let(:u) { 0.0 }
+      let(:v) { 0.0 }
 
       it { expect(color).to eq(build(:color, :white)) }
     end
 
-    context 'with a point at x=0.5 y=0 z=0' do
-      let(:point) { build(:point, x: 0.5, y: 0.0, z: 0.0) }
+    context 'with a point at u = 0.5 / v = 0.0' do
+      let(:u) { 0.5 }
+      let(:v) { 0.0 }
 
       it { expect(color).to eq(build(:color, :white)) }
     end
 
-    context 'with a point at x=0.0 y=0 z=0.5' do
-      let(:point) { build(:point, x: 0.0, y: 0.0, z: 0.5) }
+    context 'with a point at u = 0.0 / v = 0.5' do
+      let(:u) { 0.0 }
+      let(:v) { 0.5 }
 
       it { expect(color).to eq(build(:color, :white)) }
     end
 
-    context 'with a point at x=0.5 y=0 z=0.5' do
-      let(:point) { build(:point, x: 0.5, y: 0.0, z: 0.5) }
+    context 'with a point at u = 0.5 / v = 0.5' do
+      let(:u) { 0.5 }
+      let(:v) { 0.5 }
 
       it { expect(color).to eq(build(:color, :white)) }
     end
 
-    context 'with a point at x=0.8 y=0 z=0.8' do
-      let(:point) { build(:point, x: 0.8, y: 0.0, z: 0.8) }
+    context 'with a point at u = 0.8 / v = 0.8' do
+      let(:u) { 0.8 }
+      let(:v) { 0.8 }
 
       it { expect(color).to eq(build(:color, :black)) }
     end
 
-    context 'with a point at x=1.0 y=0 z=0' do
-      let(:point) { build(:point, x: 1.0, y: 0.0, z: 0.0) }
+    context 'with a point at u = 1.0 / v = 0.0' do
+      let(:u) { 1.0 }
+      let(:v) { 0.0 }
 
       it { expect(color).to eq(build(:color, :black)) }
     end
 
-    context 'with a point at x=0.0 y=0 z=1.0' do
-      let(:point) { build(:point, x: 0.0, y: 0.0, z: 1.0) }
+    context 'with a point at u = 0.0 / v = 1.0' do
+      let(:u) { 0.0 }
+      let(:v) { 1.0 }
 
       it { expect(color).to eq(build(:color, :black)) }
     end
 
-    context 'with a point at x=1.5 y=0 z=0' do
-      let(:point) { build(:point, x: 1.5, y: 0.0, z: 0.0) }
+    context 'with a point at u = 1.5 / v = 0.0' do
+      let(:u) { 1.5 }
+      let(:v) { 0.0 }
 
       it { expect(color).to eq(build(:color, :black)) }
     end
 
-    context 'with a point at x=0.0 y=0 z=1.5' do
-      let(:point) { build(:point, x: 0.0, y: 0.0, z: 1.5) }
+    context 'with a point at u = 0.0 / v = 1.5' do
+      let(:u) { 0.0 }
+      let(:v) { 1.5 }
 
       it { expect(color).to eq(build(:color, :black)) }
     end

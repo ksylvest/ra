@@ -89,4 +89,80 @@ describe Ra::Shape::Cube do
       it { expect(result).to eq(build(:vector, x: 0, y: 0, z: 1)) }
     end
   end
+
+  describe '#uv_point' do
+    subject(:uv_point) { cube.uv_point(point:) }
+
+    context 'with a point at x = -0.5 / y = +0.5 / z = +1.0' do
+      let(:point) { build(:point, x: -0.5, y: +0.5, z: +1.0) }
+
+      it { expect(uv_point).to eq(Vector[0.25, 0.75]) }
+    end
+
+    context 'with a point at x = +0.5 / y = -0.5 / z = +1.0' do
+      let(:point) { build(:point, x: +0.5, y: -0.5, z: +1.0) }
+
+      it { expect(uv_point).to eq(Vector[0.75, 0.25]) }
+    end
+
+    context 'with a point at x = +0.5 / y = +0.5 / z = -1' do
+      let(:point) { build(:point, x: +0.5, y: +0.5, z: -1.0) }
+
+      it { expect(uv_point).to eq(Vector[0.25, 0.75]) }
+    end
+
+    context 'with a point at x = -0.5 / y = -0.5 / z = -1.0' do
+      let(:point) { build(:point, x: -0.5, y: -0.5, z: -1.0) }
+
+      it { expect(uv_point).to eq(Vector[0.75, 0.25]) }
+    end
+
+    context 'with a point at x = -1.0 / y = +0.5 / z = -0.5' do
+      let(:point) { build(:point, x: -1.0, y: +0.5, z: -0.5) }
+
+      it { expect(uv_point).to eq(Vector[0.25, 0.75]) }
+    end
+
+    context 'with a point at x = -1.0 / y = -0.5 / z = +0.5' do
+      let(:point) { build(:point, x: -1.0, y: -0.5, z: +0.5) }
+
+      it { expect(uv_point).to eq(Vector[0.75, 0.25]) }
+    end
+
+    context 'with a point at x = +1.0 / y = +0.5 / z = +0.5' do
+      let(:point) { build(:point, x: +1.0, y: +0.5, z: +0.5) }
+
+      it { expect(uv_point).to eq(Vector[0.25, 0.75]) }
+    end
+
+    context 'with a point at x = +1.0 / y = -0.5 / z = -0.5' do
+      let(:point) { build(:point, x: +1.0, y: -0.5, z: -0.5) }
+
+      it { expect(uv_point).to eq(Vector[0.75, 0.25]) }
+    end
+
+    context 'with a point at x = -0.5 / y = 1.0 / z = -0.5' do
+      let(:point) { build(:point, x: -0.5, y: +1.0, z: -0.5) }
+
+      it { expect(uv_point).to eq(Vector[0.25, 0.75]) }
+    end
+
+    context 'with a point at x = +0.5 / y = +1.0 / z = +0.5' do
+      let(:point) { build(:point, x: +0.5, y: +1.0, z: +0.5) }
+
+      it { expect(uv_point).to eq(Vector[0.75, 0.25]) }
+    end
+
+    context 'with a point at x = -0.5 / y = -1.0 / z = 0.5' do
+      let(:point) { build(:point, x: -0.5, y: -1, z: +0.5) }
+
+      it { expect(uv_point).to eq(Vector[0.25, 0.75]) }
+    end
+
+    context 'with a point at x = +0.5 / y = -1.0 / z = -0.5' do
+      let(:point) { build(:point, x: 0.5, y: -1.0, z: -0.5) }
+
+      it { expect(uv_point).to eq(Vector[0.75, 0.25]) }
+    end
+  end
 end

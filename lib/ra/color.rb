@@ -19,8 +19,17 @@ module Ra
   class Color
     attr_accessor :r, :g, :b
 
-    DEFAULT_PRECISION = 255
-    private_constant :DEFAULT_PRECISION
+    PRECISION = 255
+
+    # @param value [Array<Numeric,Numeric,Numeric>]
+    # @return [Ra::Color]
+    def self.[](value)
+      new(
+        r: value[0],
+        g: value[1],
+        b: value[2],
+      )
+    end
 
     # @param value [String] e.g. "#336699"
     # @return [Ra::Color]
@@ -28,9 +37,9 @@ module Ra
       r, g, b = value.match(/^#(..)(..)(..)$/).captures.map(&:hex)
 
       new(
-        r: Float(r) / DEFAULT_PRECISION,
-        g: Float(g) / DEFAULT_PRECISION,
-        b: Float(b) / DEFAULT_PRECISION,
+        r: Float(r) / PRECISION,
+        g: Float(g) / PRECISION,
+        b: Float(b) / PRECISION,
       )
     end
 
@@ -61,7 +70,7 @@ module Ra
 
     # @param precision [Integer]
     # @return [Integer]
-    def ppm(precision: DEFAULT_PRECISION)
+    def ppm(precision: PRECISION)
       "#{r_val(precision:)} #{g_val(precision:)} #{b_val(precision:)}"
     end
 
@@ -123,17 +132,17 @@ module Ra
     protected
 
     # @return [Integer]
-    def r_val(precision: DEFAULT_PRECISION)
+    def r_val(precision: PRECISION)
       val(value: r, precision:)
     end
 
     # @return [Integer]
-    def g_val(precision: DEFAULT_PRECISION)
+    def g_val(precision: PRECISION)
       val(value: g, precision:)
     end
 
     # @return [Integer]
-    def b_val(precision: DEFAULT_PRECISION)
+    def b_val(precision: PRECISION)
       val(value: b, precision:)
     end
 
@@ -142,7 +151,7 @@ module Ra
     # @param value [Numeric]
     # @param precision [Integer]
     # @return [Integer]
-    def val(value:, precision: DEFAULT_PRECISION)
+    def val(value:, precision: PRECISION)
       (value * precision).clamp(0, precision).round
     end
   end

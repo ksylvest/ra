@@ -18,7 +18,14 @@ module Ra
     #
     # A direction.y < EPISLON indicates the ray does not intersect the plane.
     class Plane < Base
-      protected
+      # @param point [Vector] <x, y, z, Tuple::POINT>
+      # @return [Vector] <u = 0.0..1.0, v = 0.0..1.0>
+      def uv_point(point:)
+        Vector[
+          point[0] % 1, # u = x % 1
+          point[2] % 1, # v = y % 2
+        ]
+      end
 
       # @param ray [Ra::Ray] local
       # @return [Array<Numeric>]

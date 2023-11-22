@@ -44,33 +44,22 @@ camera = Ra::Camera.new(
   ),
 )
 
-floor_material = Ra::Material.new(base: Ra::Pattern::Checkers.new(
-  colors: [
-    Ra::Color.hex('#e2e8f0'),
-    Ra::Color.hex('#94a3b8'),
-  ],
-  transform: Ra::Transform
-    .scale(0.4, 0.4, 0.4)
-    .translate(0, +0.2, 0),
-))
-
-wall_material = Ra::Material.new(base: Ra::Pattern::Stripes.new(
-  colors: [
-    Ra::Color.hex('#94a3b8'),
-    Ra::Color.hex('#475569'),
-  ],
-  transform: Ra::Transform
-    .rotate_x(Math::PI / 4)
-    .rotate_y(Math::PI / 4)
-    .scale(0.2, 0.2, 0.2),
-))
-
 floor = Ra::Shape::Plane.new(
-  material: floor_material,
+  material: Ra::Material.new(base: Ra::Pattern::Checkers.new(
+    colors: [
+      Ra::Color.hex('#e2e8f0'),
+      Ra::Color.hex('#94a3b8'),
+    ],
+  )),
 )
 
 wall_l = Ra::Shape::Plane.new(
-  material: wall_material,
+  material: Ra::Material.new(base: Ra::Pattern::Stripes.new(
+    colors: [
+      Ra::Color.hex('#94a3b8'),
+      Ra::Color.hex('#475569'),
+    ],
+  )),
   transform: Ra::Transform
     .translate(0, 0, +5.0)
     .rotate_y(-Math::PI / 4)
@@ -78,7 +67,12 @@ wall_l = Ra::Shape::Plane.new(
 )
 
 wall_r = Ra::Shape::Plane.new(
-  material: wall_material,
+  material: Ra::Material.new(base: Ra::Pattern::Stripes.new(
+    colors: [
+      Ra::Color.hex('#94a3b8'),
+      Ra::Color.hex('#475569'),
+    ],
+  )),
   transform: Ra::Transform
     .translate(0, 0, +5.0)
     .rotate_y(Math::PI / 4)
@@ -86,14 +80,13 @@ wall_r = Ra::Shape::Plane.new(
 )
 
 sphere = Ra::Shape::Sphere.new(
-  material: Ra::Material.new(base: Ra::Pattern::Rings.new(
+  material: Ra::Material.new(base: Ra::Pattern::Checkers.new(
+    rows: 8,
+    cols: 4,
     colors: [
       Ra::Color.hex('#f87171'),
       Ra::Color.hex('#dc2626'),
     ],
-    transform: Ra::Transform
-      .rotate_z(Math::PI / 4)
-      .scale(0.1, 0.1, 0.1),
   )),
   transform: Ra::Transform
     .translate(0, +0.5, -2.0)
@@ -104,10 +97,6 @@ cube_l = Ra::Shape::Cube.new(
   material: Ra::Material.new(base: Ra::Pattern::Gradient.new(
     color_a: Ra::Color.hex('#f43f5e'),
     color_b: Ra::Color.hex('#8b5cf6'),
-    transform: Ra::Transform
-      .translate(1.0, 1.0, 1.0)
-      .rotate_z(Math::PI / 4)
-      .scale(3.0, 3.0, 3.0),
   )),
   transform: Ra::Transform
     .translate(+1.0, +0.3, -1.5)
@@ -118,10 +107,6 @@ cube_r = Ra::Shape::Cube.new(
   material: Ra::Material.new(base: Ra::Pattern::Gradient.new(
     color_a: Ra::Color.hex('#84cc16'),
     color_b: Ra::Color.hex('#f97316'),
-    transform: Ra::Transform
-      .translate(1.0, 1.0, 1.0)
-      .rotate_z(Math::PI / 4)
-      .scale(3.0, 3.0, 3.0),
   )),
   transform: Ra::Transform
     .translate(-1.0, +0.3, -1.5)

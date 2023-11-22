@@ -6,7 +6,7 @@ module Ra
     # methods `l_normal` and `t_intersect`. Both methods use a point / ray
     # with a local transform applied.
     class Base
-      attr_accessor :material, :transform
+      attr_accessor :material
 
       # @param material [Ra::Material]
       # @param transform [Ra::Matrix]
@@ -18,25 +18,29 @@ module Ra
       # @param ray [Ra::Ray]
       # @return [Array<Ra::Intersection>]
       def intersect(ray:)
-        t_intersect(ray: ray.transform(transform.inverse))
+        t_intersect(ray: ray.transform(@transform.inverse))
           .map { |t| Ra::Intersection.new(ray:, shape: self, t:) }
       end
 
-      # @param point [Vector]
-      # @return [Vector]
+      # @param point [Vector] <x, y, z, Tuple::POINT>
+      # @return [Vector] <x, y, z, Tuple::POINT>
       def normal(point:)
-        normal = transform.inverse.transpose * l_normal(point: transform.inverse * point)
+        normal = @transform.inverse.transpose * l_normal(point: @transform.inverse * point)
 
         Vector[normal[0], normal[1], normal[2], Ra::Tuple::VECTOR].normalize
       end
 
-      # @param point [Vector]
+      # @param point [Vector] <x, y, z, Tuple::POINT>
       # @return [Color]
       def color(point:)
-        @material.color(point: transform.inverse * point)
+        @material.color(point: uv_point(point: @transform.inverse * point))
       end
 
-      private
+      # @param point [Vector] <x, y, z, Tuple::POINT>
+      # @return [Vector] <u = 0.0..1.0, v = 0.0..1.0>
+      def uv_point(point:)
+        raise NotImplementedError, '#uv_point must be implemented by a concrete subclass'
+      end
 
       # @param ray [Ra::Ray] local
       # @return [Array<Intersection>]

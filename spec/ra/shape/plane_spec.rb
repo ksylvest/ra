@@ -38,4 +38,16 @@ describe Ra::Shape::Plane do
 
     it { expect(result).to eq(build(:vector, x: 0, y: 1, z: 0)) }
   end
+
+  describe '#uv_point' do
+    subject(:uv_point) { plane.uv_point(point:) }
+
+    context 'with a point at x = 2 / y = 3 / z = 4' do
+      let(:point) { build(:point, x: 2, y: 4, z: 3) }
+
+      it 'maps x to u and z to v' do
+        expect(uv_point).to eq(Vector[0, 0])
+      end
+    end
+  end
 end

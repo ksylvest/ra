@@ -8,26 +8,32 @@ describe Ra::Pattern::Stripes do
   describe '#color' do
     subject(:color) { stripes.color(point:) }
 
-    context 'with a point at x=0.0 y=0.0 z=0.0' do
-      let(:point) { build(:point, x: 0.0, y: 0.0, z: 0.0) }
+    let(:point) { Vector[u, v, 0, Ra::Tuple::POINT] }
+
+    context 'with a point at u = 0.0 / v = 0.0' do
+      let(:u) { 0.0 }
+      let(:v) { 0.0 }
 
       it { expect(color).to eq(build(:color, :white)) }
     end
 
-    context 'with a point at x=0.5 y=0 z=0' do
-      let(:point) { build(:point, x: 0.5, y: 0.0, z: 0.0) }
+    context 'with a point at u = 0.5 / v = 0.0' do
+      let(:u) { 0.5 }
+      let(:v) { 0.0 }
 
       it { expect(color).to eq(build(:color, :white)) }
     end
 
-    context 'with a point at x=1.0 y=0 z=0' do
-      let(:point) { build(:point, x: 1.0, y: 0.0, z: 0.0) }
+    context 'with a point at u = 1.0 / v = 0.0' do
+      let(:u) { 1.0 }
+      let(:v) { 0.0 }
 
       it { expect(color).to eq(build(:color, :black)) }
     end
 
-    context 'with a point at x=1.5 y=0 z=0' do
-      let(:point) { build(:point, x: 1.5, y: 0.0, z: 0.0) }
+    context 'with a point at u = 1.5 / v = 0.0' do
+      let(:u) { 1.5 }
+      let(:v) { 0.0 }
 
       it { expect(color).to eq(build(:color, :black)) }
     end

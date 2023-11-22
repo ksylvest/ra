@@ -21,7 +21,20 @@ module Ra
     #
     # Thus 6 planes can be checked for intersect.
     class Cube < Base
-      protected
+      # @param point [Vector] <x, y, z, Tuple::POINT>
+      # @return [Vector] <u = 0.0..1.0, v = 0.0..1.0>
+      def uv_point(point:)
+        x = point[0]
+        y = point[1]
+        z = point[2]
+        value = [x, y, z].max_by(&:abs)
+
+        case value
+        when x then x.positive? ? uv_point_r(point:) : uv_point_l(point:)
+        when y then y.positive? ? uv_point_u(point:) : uv_point_d(point:)
+        else        z.positive? ? uv_point_f(point:) : uv_point_b(point:)
+        end
+      end
 
       # @param ray [Ra::Ray] local
       # @return [Array<Numeric>]
@@ -83,6 +96,60 @@ module Ra
         end
 
         t_min < t_max ? [t_min, t_max] : [t_max, t_min]
+      end
+
+      # @param point [Vector] <x, y, z, Tuple::POINT>
+      # @return [Vector] <u = 0.0..1.0, v = 0.0..1.0>
+      def uv_point_u(point:)
+        Vector[
+          ((point[0] + 1) % 2) / 2,
+          ((1 - point[2]) % 2) / 2,
+        ]
+      end
+
+      # @param point [Vector] <x, y, z, Tuple::POINT>
+      # @return [Vector] <u = 0.0..1.0, v = 0.0..1.0>
+      def uv_point_d(point:)
+        Vector[
+          ((point[0] + 1) % 2) / 2,
+          ((point[2] + 1) % 2) / 2,
+        ]
+      end
+
+      # @param point [Vector] <x, y, z, Tuple::POINT>
+      # @return [Vector] <u = 0.0..1.0, v = 0.0..1.0>
+      def uv_point_l(point:)
+        Vector[
+          ((point[2] + 1) % 2) / 2,
+          ((point[1] + 1) % 2) / 2,
+        ]
+      end
+
+      # @param point [Vector] <x, y, z, Tuple::POINT>
+      # @return [Vector] <u = 0.0..1.0, v = 0.0..1.0>
+      def uv_point_r(point:)
+        Vector[
+          ((1 - point[2]) % 2) / 2,
+          ((point[1] + 1) % 2) / 2,
+        ]
+      end
+
+      # @param point [Vector] <x, y, z, Tuple::POINT>
+      # @return [Vector] <u = 0.0..1.0, v = 0.0..1.0>
+      def uv_point_b(point:)
+        Vector[
+          ((1 - point[0]) % 2) / 2,
+          ((point[1] + 1) % 2) / 2,
+        ]
+      end
+
+      # @param point [Vector] <x, y, z, Tuple::POINT>
+      # @return [Vector] <u = 0.0..1.0, v = 0.0..1.0>
+      def uv_point_f(point:)
+        Vector[
+          ((point[0] + 1) % 2) / 2,
+          ((point[1] + 1) % 2) / 2,
+        ]
       end
     end
   end

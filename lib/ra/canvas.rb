@@ -16,19 +16,12 @@ module Ra
   class Canvas
     attr_accessor :w, :h, :precision
 
-    DEFAULT_COLOR = Color.black
-    private_constant :DEFAULT_COLOR
-
-    DEFAULT_PRECISION = 255
-    private_constant :DEFAULT_PRECISION
-
     PPM_VERSION = 'P3'
-    private_constant :PPM_VERSION
 
     # @param w [Integer]
     # @param h [Integer]
     # @param precision [Integer]
-    def initialize(w:, h:, precision: DEFAULT_PRECISION)
+    def initialize(w:, h:, precision: Color::PRECISION)
       @w = w
       @h = h
       @precision = precision
@@ -43,7 +36,7 @@ module Ra
       raise ArgumentError, "x=#{x} must be < #{@w}" unless x < @w
       raise ArgumentError, "y=#{y} must be < #{@h}" unless y < @h
 
-      @pixels[x][y] || DEFAULT_COLOR
+      @pixels[x][y] || Color.black
     end
 
     # @param x [Integer]
