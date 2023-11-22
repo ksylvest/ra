@@ -6,11 +6,11 @@ require 'ra'
 require 'slop'
 
 config = Slop.parse(ARGV) do |options|
-  options.banner = 'Usage: ra -w 1024 -h 1280 | convert - render.avif'
+  options.banner = 'Usage: ra -w 2560 -h 2048 | convert - sample.avif'
 
   options.integer '-w', '--width', 'width', default: 1280
   options.integer '-h', '--height', 'height', default: 1024
-  options.integer '-p', '--precision', 'precision', default: 255
+  options.integer '-fov', 'degrees', default: 60
 
   options.on('--help', 'help') do
     Ra.logger.log(options)
@@ -23,20 +23,116 @@ config = Slop.parse(ARGV) do |options|
   end
 end
 
-canvas = Ra::Canvas.new(
-  w: config[:w],
-  h: config[:h],
-  precision: config[:precision],
+light = Ra::Light.new(
+  position: Vector[+5, +7, -9, Ra::Tuple::POINT],
+  intensity: Ra::Color.white,
 )
 
-canvas.w.times do |x|
-  canvas.h.times do |y|
-    canvas[x, y] = Ra::Color.new(
-      r: Float(x) / canvas.w,
-      g: 0.5,
-      b: Float(y) / canvas.h,
-    )
-  end
-end
+camera = Ra::Camera.new(
+  w: config[:w],
+  h: config[:h],
+  fov: config[:fov] * Math::PI / 180,
+  transform: Ra::Transform.view(
+    from: Vector[0, +1.5, -5.0, Ra::Tuple::POINT],
+    to: Vector[0, 0, +1.0, Ra::Tuple::POINT],
+    up: Vector[0, 1, 0, Ra::Tuple::VECTOR],
+  ),
+)
+
+floor_material = Ra::Material.new(base: Ra::Pattern::Checkers.new(
+  colors: [
+    Ra::Color.hex('#e2e8f0'),
+    Ra::Color.hex('#94a3b8'),
+  ],
+  transform: Ra::Transform
+    .scale(0.4, 0.4, 0.4)
+    .translate(0, +0.2, 0),
+))
+
+wall_material = Ra::Material.new(base: Ra::Pattern::Stripes.new(
+  colors: [
+    Ra::Color.hex('#94a3b8'),
+    Ra::Color.hex('#475569'),
+  ],
+  transform: Ra::Transform
+    .rotate_x(Math::PI / 4)
+    .rotate_y(Math::PI / 4)
+    .scale(0.2, 0.2, 0.2),
+))
+
+floor = Ra::Shape::Plane.new(
+  material: floor_material,
+)
+
+wall_l = Ra::Shape::Plane.new(
+  material: wall_material,
+  transform: Ra::Transform
+    .translate(0, 0, +5.0)
+    .rotate_y(-Math::PI / 4)
+    .rotate_x(Math::PI / 2),
+)
+
+wall_r = Ra::Shape::Plane.new(
+  material: wall_material,
+  transform: Ra::Transform
+    .translate(0, 0, +5.0)
+    .rotate_y(Math::PI / 4)
+    .rotate_x(Math::PI / 2),
+)
+
+sphere = Ra::Shape::Sphere.new(
+  material: Ra::Material.new(base: Ra::Pattern::Rings.new(
+    colors: [
+      Ra::Color.hex('#f87171'),
+      Ra::Color.hex('#dc2626'),
+    ],
+    transform: Ra::Transform
+      .rotate_x(Math::PI / 4)
+      .rotate_y(Math::PI / 4)
+      .scale(0.2, 0.2, 0.2),
+  )),
+  transform: Ra::Transform
+    .translate(0, +0.5, -2.0)
+    .scale(0.5, 0.5, 0.5),
+)
+
+cube_l = Ra::Shape::Cube.new(
+  material: Ra::Material.new(base: Ra::Pattern::Gradient.new(
+    color_a: Ra::Color.hex('#f43f5e'),
+    color_b: Ra::Color.hex('#8b5cf6'),
+    transform: Ra::Transform
+      .translate(1.0, 1.0, 1.0)
+      .scale(3.0, 3.0, 3.0),
+  )),
+  transform: Ra::Transform
+    .translate(+1.0, +0.3, -1.5)
+    .scale(0.3, 0.3, 0.3),
+)
+
+cube_r = Ra::Shape::Cube.new(
+  material: Ra::Material.new(base: Ra::Pattern::Gradient.new(
+    color_a: Ra::Color.hex('#84cc16'),
+    color_b: Ra::Color.hex('#f97316'),
+    transform: Ra::Transform
+      .translate(1.0, 1.0, 1.0)
+      .scale(3.0, 3.0, 3.0),
+  )),
+  transform: Ra::Transform
+    .translate(-1.0, -0.3, -1.5)
+    .scale(0.3, 0.3, 0.3),
+)
+
+shapes = [
+  floor,
+  wall_l,
+  wall_r,
+  sphere,
+  cube_l,
+  cube_r,
+].freeze
+
+world = Ra::World.new(light:, shapes:)
+engine = Ra::Engine.new(camera:, world:)
+canvas = engine.render
 
 Ra.logger.log(canvas.ppm)
