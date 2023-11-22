@@ -26,7 +26,7 @@ module Ra
         origin_y = ray.origin[1]
         direction_y = ray.direction[1]
 
-        return [] if direction_y.abs < Float::EPSILON
+        return [] if direction_y.abs < EPSILON
 
         [-origin_y / direction_y]
       end
