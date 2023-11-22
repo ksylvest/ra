@@ -74,7 +74,7 @@ module Ra
         t_min_numerator = -1 - origin
         t_max_numerator = +1 - origin
 
-        if direction.abs < Float::EPSILON
+        if direction.abs < EPSILON
           t_min = t_min_numerator * Float::INFINITY
           t_max = t_max_numerator * Float::INFINITY
         else
