@@ -3,13 +3,10 @@
 require 'spec_helper'
 
 describe Ra::World do
-  subject(:world) { build(:world, light:, shapes: [shape]) }
+  subject(:world) { build(:world, lights: [light], shapes: [shape]) }
 
   let(:light) { build(:light) }
   let(:shape) { build(:sphere) }
-
-  it { expect(world.light).to eq(light) }
-  it { expect(world.shapes).to eq([shape]) }
 
   describe '#intersect' do
     subject(:intersect) { world.intersect(ray:) }
@@ -39,9 +36,8 @@ describe Ra::World do
   end
 
   describe '#shadowed?' do
-    subject(:shadowed?) { world.shadowed?(point:) }
+    subject(:shadowed?) { world.shadowed?(point:, light:) }
 
-    let(:world) { build(:world, light:, shapes: [shape]) }
     let(:light) { build(:light, position: build(:point, x: 0, y: 0, z: -5)) }
     let(:sphere) { build(:sphere) }
 

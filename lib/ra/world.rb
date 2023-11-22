@@ -3,12 +3,10 @@
 module Ra
   # A world is composed of objects (lights / cameras) and handles coloring of rays.
   class World
-    attr_accessor :light, :shapes
-
-    # @param light [Ra::Light]
+    # @param lights [Ra::Light]
     # @param shapes [Array<Ra::Shape>]
-    def initialize(light:, shapes:)
-      @light = light
+    def initialize(lights:, shapes:)
+      @lights = lights
       @shapes = shapes
     end
 
@@ -30,14 +28,20 @@ module Ra
     # @return [Ra::Color]
     def color(intersection:)
       surface = intersection.surface
-      shadowed = shadowed?(point: surface.hpoint)
+      point = surface.hpoint
 
-      Lighting.new(shadowed:, surface:, light:).color
+      colors = @lights.map do |light|
+        shadowed = shadowed?(point:, light:)
+        lighting = Lighting.new(surface:, light:, shadowed:)
+        lighting.color
+      end
+
+      colors.reduce(&:+)
     end
 
     # @param point [Ra::Point]
-    def shadowed?(point:)
-      vector = @light.position - point
+    def shadowed?(light:, point:)
+      vector = light.position - point
       distance = vector.magnitude
       direction = vector.normalize
       ray = Ray.new(origin: point, direction:)

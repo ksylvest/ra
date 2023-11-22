@@ -18,7 +18,7 @@ module Ra
     # @param diffuse [Float] between 0.0 and 1.0
     # @param specular [Float] between 0.0 and 1.0
     # @param shininess [Numeric]
-    def initialize(base:, ambient: 0.2, diffuse: 0.6, specular: 0.6, shininess: 200)
+    def initialize(base:, ambient: 0.0, diffuse: 0.8, specular: 0.2, shininess: 80)
       @base = base
       @ambient = ambient
       @diffuse = diffuse

@@ -23,9 +23,14 @@ config = Slop.parse(ARGV) do |options|
   end
 end
 
-light = Ra::Light.new(
+light_l = Ra::Light.new(
   position: Vector[+5, +7, -9, Ra::Tuple::POINT],
-  intensity: Ra::Color.white,
+  intensity: Ra::Color.uniform(0.4),
+)
+
+light_r = Ra::Light.new(
+  position: Vector[-5, +7, -9, Ra::Tuple::POINT],
+  intensity: Ra::Color.uniform(0.8),
 )
 
 camera = Ra::Camera.new(
@@ -123,6 +128,11 @@ cube_r = Ra::Shape::Cube.new(
     .scale(0.3, 0.3, 0.3),
 )
 
+lights = [
+  light_l,
+  light_r,
+]
+
 shapes = [
   floor,
   wall_l,
@@ -132,7 +142,7 @@ shapes = [
   cube_r,
 ].freeze
 
-world = Ra::World.new(light:, shapes:)
+world = Ra::World.new(lights:, shapes:)
 engine = Ra::Engine.new(camera:, world:)
 canvas = engine.render
 
