@@ -22,6 +22,26 @@ describe Ra::Transform do
     it { expect(identity).to eq(result) }
   end
 
+  describe '.view' do
+    subject(:view) { described_class.view(from:, to:, up:) }
+
+    context 'with the default from / to / up' do
+      let(:from) { build(:point, x: 0, y: 0, z: 0) }
+      let(:to) { build(:point, x: 0, y: 0, z: -1) }
+      let(:up) { build(:vector, x: 0, y: 1, z: 0) }
+
+      it { expect(view).to eq(described_class::IDENTITY) }
+    end
+
+    context 'with a customized from / to / up' do
+      let(:from) { build(:point, x: 0, y: 0, z: 0) }
+      let(:to) { build(:point, x: 0, y: 0, z: 1) }
+      let(:up) { build(:vector, x: 0, y: 1, z: 0) }
+
+      it { expect(view).to eq(described_class.scale(-1, 1, -1)) }
+    end
+  end
+
   describe '.translate' do
     subject(:translate) { described_class.translate(1, 2, 3) }
 
