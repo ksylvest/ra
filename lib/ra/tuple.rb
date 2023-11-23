@@ -9,8 +9,8 @@ module Ra
     POINT = 1
     VECTOR = 0
 
-    # @return source [Vector]
-    # @return target [Vector]
+    # @param source [Vector]
+    # @param target [Vector]
     # @return [Vector]
     def self.cross(source, target)
       cross = Vector[source[0], source[1], source[2]].cross(Vector[target[0], target[1], target[2]])
