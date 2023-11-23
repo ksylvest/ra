@@ -81,7 +81,6 @@ module Ra
 
       # @param origin [Numeric]
       # @param direction [Numeric]
-      # @param value [Numeric]
       # @return [Array<Numeric,Numeric>]
       def t_min_max(origin, direction)
         t_min_numerator = -1 - origin
