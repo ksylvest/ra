@@ -7,6 +7,7 @@ FactoryBot.define do
     base factory: :color
     ambient { 0.5 }
     diffuse { 0.5 }
+    reflective { 0.0 }
     specular { 0.5 }
     shininess { 20 }
   end
