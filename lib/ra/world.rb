@@ -42,6 +42,7 @@ module Ra
       colors.reduce(&:+)
     end
 
+    # @param light [Ra::Light]
     # @param point [Ra::Point]
     def shadowed?(light:, point:)
       vector = light.position - point
