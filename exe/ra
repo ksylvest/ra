@@ -23,7 +23,7 @@ config = Slop.parse(ARGV) do |options|
   end
 end
 
-earth = Ra::Pattern::Texture.new(path: File.join(File.dirname(__FILE__), '..', 'textures/earth.avif'))
+earth = Ra::Pattern::Texture.new(path: File.join(File.dirname(__FILE__), '..', 'assets/earth.avif'))
 
 light_l = Ra::Light.new(
   position: Vector[+5, +3, -9, Ra::Tuple::POINT],

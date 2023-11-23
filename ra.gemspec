@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
   spec.homepage = 'https://github.com/ksylvest/ra'
   spec.license = 'MIT'
 
-  spec.files = Dir.glob('{exe,lib}/**/*') + %w[README.md]
+  spec.files = Dir.glob('{exe,lib,assets}/**/*') + %w[README.md]
 
   spec.bindir = 'exe'
   spec.executables = ['ra']
