@@ -15,11 +15,12 @@ module Ra
       # @param point [Vector] <u = 0.0..1.0, v = 0.0..1.0>
       # @return [Ra::Color]
       def color(point:)
+        count = @colors.count
         u = point[0]
         v = point[1]
-        value = (u + v) / 2
+        value = (u + v) * (2 * count)
 
-        @colors[(value * @colors.count).floor % @colors.count]
+        @colors[value.floor % count]
       end
     end
   end
