@@ -38,8 +38,9 @@ module Ra
       point = ray.position(t:)
       eyev = -ray.direction
       normalv = shape.normal(point:)
+      reflectv = Tuple.reflect(ray.direction, normalv)
 
-      Surface.new(shape:, eyev:, normalv:, point:)
+      Surface.new(shape:, eyev:, normalv:, reflectv:, point:)
     end
   end
 end
