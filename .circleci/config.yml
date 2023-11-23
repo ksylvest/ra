@@ -38,7 +38,5 @@ workflows:
             - rubocop
             - rspec
           filters:
-            branches:
-              ignore: /.*/
             tags:
               only: /^v\d+\.\d+\.\d+$/
