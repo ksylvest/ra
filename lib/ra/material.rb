@@ -20,6 +20,11 @@ module Ra
     # @param specular [Float] between 0.0 and 1.0
     # @param shininess [Numeric]
     def initialize(base:, ambient: 0.0, diffuse: 0.8, reflective: 0.2, specular: 0.2, shininess: 80)
+      raise ArgumentError, "ambient=#{ambient} must be between 0 and 1" unless ambient.between?(0, 1)
+      raise ArgumentError, "ambient=#{diffuse} must be between 0 and 1" unless diffuse.between?(0, 1)
+      raise ArgumentError, "ambient=#{reflective} must be between 0 and 1" unless reflective.between?(0, 1)
+      raise ArgumentError, "specular=#{specular} must be between 0 and 1" unless specular.between?(0, 1)
+
       @base = base
       @ambient = ambient
       @diffuse = diffuse
