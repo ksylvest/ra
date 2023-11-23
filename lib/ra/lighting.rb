@@ -14,7 +14,6 @@ module Ra
       @light = light
     end
 
-    # @param shadowed [Boolean]
     # @return [Ra::Color]
     def color
       ambient_color + diffuse_color + specular_color
