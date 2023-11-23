@@ -22,5 +22,12 @@ module Ra
         Tuple::VECTOR,
       ]
     end
+
+    # @param vector [Vector]
+    # @param normal [Vector]
+    # @return [Vector]
+    def self.reflect(vector, normal)
+      vector - (normal * 2 * vector.dot(normal))
+    end
   end
 end
