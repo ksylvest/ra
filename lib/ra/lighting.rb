@@ -21,7 +21,7 @@ module Ra
 
     private
 
-    # @param [Ra::Shape]
+    # @return [Ra::Shape]
     def shape
       surface.shape
     end
