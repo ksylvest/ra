@@ -24,9 +24,12 @@ module Ra
       Intersection.hit(intersections:)
     end
 
-    # @param intersection [Ra::Intersection]
+    # @param ray [Ra::Ray]
     # @return [Ra::Color]
-    def color(intersection:)
+    def color(ray:)
+      intersection = intersection(ray:)
+      return unless intersection
+
       surface = intersection.surface
       point = surface.hpoint
 

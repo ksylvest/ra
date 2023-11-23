@@ -18,9 +18,7 @@ describe Ra::World do
   end
 
   describe '#color' do
-    subject(:color) { world.color(intersection:) }
-
-    let(:intersection) { world.intersection(ray:) }
+    subject(:color) { world.color(ray:) }
 
     context 'with a ray on the inside of the shape' do
       let(:ray) { build(:ray, origin: build(:point, x: 0, y: 0, z: -5), direction: build(:vector, x: 0, y: 0, z: 1)) }

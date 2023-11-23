@@ -31,10 +31,7 @@ module Ra
     def draw(x:, y:, canvas:)
       ray = @camera.ray(x:, y:)
 
-      intersections = @world.intersect(ray:)
-      intersection = Intersection.hit(intersections:)
-
-      canvas[x, y] = @world.color(intersection:) if intersection
+      canvas[x, y] = @world.color(ray:)
     end
   end
 end
