@@ -59,16 +59,9 @@ describe Ra::Pattern::Rings do
       it { expect(color).to eq(build(:color, :black)) }
     end
 
-    context 'with a point at u = 1.5 / v = 0.0' do
-      let(:u) { 1.5 }
-      let(:v) { 0.0 }
-
-      it { expect(color).to eq(build(:color, :black)) }
-    end
-
-    context 'with a point at u = 0.0 / v = 1.5' do
-      let(:u) { 0.0 }
-      let(:v) { 1.5 }
+    context 'with a point at u = 1.0 / v = 1.0' do
+      let(:u) { 1.0 }
+      let(:v) { 1.0 }
 
       it { expect(color).to eq(build(:color, :black)) }
     end
