@@ -34,6 +34,9 @@ workflows:
       - rubocop
       - rspec
       - release:
+          requires:
+            - rubocop
+            - rspec
           filters:
             branches:
               only:
