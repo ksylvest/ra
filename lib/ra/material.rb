@@ -11,17 +11,19 @@ module Ra
   #    shininess: 200,
   #   )
   class Material
-    attr_accessor :base, :ambient, :diffuse, :specular, :shininess
+    attr_accessor :base, :ambient, :diffuse, :reflective, :specular, :shininess
 
     # @param base [Ra::Color, Ra::Pattern:::Base]
     # @param ambient [Float] between 0.0 and 1.0
     # @param diffuse [Float] between 0.0 and 1.0
+    # @param reflective [Float] between 0.0 and 1.0
     # @param specular [Float] between 0.0 and 1.0
     # @param shininess [Numeric]
-    def initialize(base:, ambient: 0.0, diffuse: 0.8, specular: 0.2, shininess: 80)
+    def initialize(base:, ambient: 0.0, diffuse: 0.8, reflective: 0.2, specular: 0.2, shininess: 80)
       @base = base
       @ambient = ambient
       @diffuse = diffuse
+      @reflective = reflective
       @specular = specular
       @shininess = shininess
     end
