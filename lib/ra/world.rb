@@ -26,20 +26,34 @@ module Ra
 
     # @param ray [Ra::Ray]
     # @return [Ra::Color]
-    def color(ray:)
+    def color(ray:, remaining: 4)
       intersection = intersection(ray:)
       return unless intersection
 
       surface = intersection.surface
-      point = surface.hpoint
 
       colors = @lights.map do |light|
-        shadowed = shadowed?(point:, light:)
-        lighting = Lighting.new(surface:, light:, shadowed:)
+        shadowed = shadowed?(point: surface.hpoint, light:)
+        lighting = Lighting.new(light:, shadowed:, surface:)
         lighting.color
       end
 
-      colors.reduce(&:+)
+      colors.reduce(&:+) + reflect(surface:, remaining:)
+    end
+
+    # @param surface [Ra::Surface]
+    # @param remaining [Integer]
+    # @return [Ra::Color]
+    def reflect(surface:, remaining:)
+      return if remaining.zero?
+
+      material = surface.shape.material
+      return unless material.reflective.positive?
+
+      ray = Ray.new(origin: surface.hpoint, direction: surface.reflectv)
+
+      color = color(ray:, remaining: remaining.pred)
+      color * material.reflective if color
     end
 
     # @param light [Ra::Light]
