@@ -39,8 +39,6 @@ workflows:
             - rspec
           filters:
             branches:
-              only:
-                - "main"
+              only: main
             tags:
-              only:
-                - /^v\d+\.\d+\.\d+$/
+              only: /^v\d+\.\d+\.\d+$/
