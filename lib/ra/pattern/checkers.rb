@@ -16,7 +16,6 @@ module Ra
       # @param rows [Integer]
       # @param cols [Integer]
       # @param colors [Array<Ra::Color>]
-      # @param transform [Ra::Matrix]
       def initialize(cols: DEFAULT_COLS, rows: DEFAULT_ROWS, colors: DEFAULT_COLORS)
         super()
         @rows = rows
