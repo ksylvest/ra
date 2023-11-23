@@ -29,4 +29,13 @@ describe Ra::Tuple do
 
     it { expect(cross).to eq(build(:vector, x: -1, y: 2, z: -1)) }
   end
+
+  describe '.reflect' do
+    subject(:reflect) { described_class.reflect(vector, normal) }
+
+    let(:vector) { build(:vector, x: 1, y: -1, z: 0) }
+    let(:normal) { build(:vector, x: 0, y: 1, z: 0) }
+
+    it { expect(reflect).to eq(build(:vector, x: 1, y: 1, z: 0)) }
+  end
 end

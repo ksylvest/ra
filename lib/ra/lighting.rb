@@ -53,7 +53,7 @@ module Ra
 
     # @return [Ra::Vector]
     def reflectv
-      @reflectv ||= -(lightv - (normalv * 2 * lightv.dot(normalv)))
+      @reflectv ||= -Tuple.reflect(lightv, normalv)
     end
 
     # @return [Ra::Vector]
