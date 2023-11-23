@@ -82,7 +82,7 @@ module Ra
       half_h - offset_y
     end
 
-    # @param y [Float]
+    # @param x [Float]
     # @return [Float]
     def world_x(x:)
       offset_x = (x + 0.5) * p_size
