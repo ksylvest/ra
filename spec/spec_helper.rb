@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'debug'
 require 'ra'
 
 Dir["#{__dir__}/support/**/*.rb"].each { |file| require file }
