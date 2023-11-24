@@ -143,6 +143,5 @@ shapes = [
 
 world = Ra::World.new(lights:, shapes:)
 engine = Ra::Engine.new(camera:, world:)
-canvas = engine.render
 
-Ra.logger.log(canvas.ppm)
+engine.ppm { |text| Ra.logger.log(text) }

@@ -1,9 +1,15 @@
 # frozen_string_literal: true
 
 module Ra
-  # An engine takes uses a world / camera to generate a canvas.
+  # An engine takes a world / camera and generates a PPM.
   class Engine
+    include Enumerable
+
     PRECISION = 255
+    PORCESSES = 8
+
+    PPM_VERSION = 'P3'
+    PPM_DEFAULT = '0 0 0'
 
     # @param world [Ra::World]
     # @param camera [Ra::Camera]
@@ -12,26 +18,29 @@ module Ra
       @camera = camera
     end
 
-    # @return [Ra::Canvas]
-    def render
-      Ra::Canvas.new(w: @camera.w, h: @camera.h, precision: PRECISION).tap do |canvas|
-        @camera.h.times do |y|
-          @camera.w.times do |x|
-            draw(x:, y:, canvas:)
-          end
-        end
+    # @yield [y, x, color] y, x, color
+    # @yieldparam [Integer] y
+    # @yieldparam [Integer] x
+    # @yieldparam [Ra::Color, nil] color
+    def each
+      @camera.each do |y, x, ray|
+        color = @world.color(ray:)
+        yield(y, x, color)
       end
     end
 
-    private
+    # @yield [text]
+    # @yieldparam [String] text
+    def ppm
+      yield(<<~PPM)
+        #{PPM_VERSION}
+        #{@camera.w} #{@camera.h}
+        #{Color::PRECISION}
+      PPM
 
-    # @param x [Integer]
-    # @param y [Integer]
-    # @param canvas [Ra::Canvas]
-    def draw(x:, y:, canvas:)
-      ray = @camera.ray(x:, y:)
-
-      canvas[x, y] = @world.color(ray:)
+      each do |_y, _x, color|
+        yield(color ? color.ppm : PPM_DEFAULT)
+      end
     end
   end
 end

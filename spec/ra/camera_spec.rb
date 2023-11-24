@@ -10,6 +10,13 @@ describe Ra::Camera do
   it { expect(camera.fov).to be_a(Float) }
   it { expect(camera.transform).to eq(Ra::Transform::IDENTITY) }
 
+  describe '#each' do
+    it 'yields a ray for each y / x pair' do
+      expect { |block| camera.each(&block) }
+        .to yield_control
+    end
+  end
+
   describe '#half_view' do
     subject(:half_view) { camera.half_view.round(8) }
 
