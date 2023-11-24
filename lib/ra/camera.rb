@@ -24,6 +24,8 @@ module Ra
   # dimensions rays are cast to the center of pixels evenly distrubted across
   # the screen.
   class Camera
+    include Enumerable
+
     attr_accessor :h, :w, :fov, :transform
 
     DEFAULT_W = 1280
@@ -39,6 +41,22 @@ module Ra
       @h = h
       @w = w
       @fov = fov
+    end
+
+    # @yield [y, x, ray] y, x, ray
+    # @yieldparam [Integer] y
+    # @yieldparam [Integer] x
+    # @yieldparam [Ra::Ray] ray
+    def each
+      @h.times do |y|
+        @w.times do |x|
+          ray = ray(
+            y:,
+            x:,
+          )
+          yield(y, x, ray)
+        end
+      end
     end
 
     # @param x [Numeric]

@@ -5,9 +5,17 @@ require 'spec_helper'
 describe Ra::Engine do
   subject(:engine) { build(:engine) }
 
-  describe '#render' do
-    subject(:render) { engine.render }
+  describe '#each' do
+    it 'yields a color for each y / x pair' do
+      expect { |block| engine.each(&block) }
+        .to yield_control
+    end
+  end
 
-    it { expect(render).to be_a(Ra::Canvas) }
+  describe '#ppm' do
+    it do
+      expect { |block| engine.ppm(&block) }
+        .to yield_control
+    end
   end
 end
