@@ -18,14 +18,12 @@ module Ra
       @camera = camera
     end
 
-    # @yield [y, x, color] y, x, color
-    # @yieldparam [Integer] y
-    # @yieldparam [Integer] x
-    # @yieldparam [Ra::Color, nil] color
+    # @yield [pixel]
+    # @yieldparam [Ra::Pixel] pixel
     def each
       @camera.each do |y, x, ray|
         color = @world.color(ray:)
-        yield(y, x, color)
+        yield(Ra::Pixel[y, x, color])
       end
     end
 
@@ -38,8 +36,8 @@ module Ra
         #{Color::PRECISION}
       PPM
 
-      each do |_y, _x, color|
-        yield(color ? color.ppm : PPM_DEFAULT)
+      each do |pixel|
+        yield(pixel.color ? pixel.color.ppm : PPM_DEFAULT)
       end
     end
   end
