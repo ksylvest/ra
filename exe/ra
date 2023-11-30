@@ -10,7 +10,7 @@ config = Slop.parse(ARGV) do |options|
 
   options.integer '-w', '--width', 'width', default: 2560
   options.integer '-h', '--height', 'height', default: 2048
-  options.integer '-fov', 'degrees', default: 60
+  options.integer '-fov', 'degrees', default: 90
 
   options.on('--help', 'help') do
     Ra.logger.log(options)
@@ -26,13 +26,13 @@ end
 earth = Ra::Pattern::Texture.new(path: File.join(File.dirname(__FILE__), '..', 'assets/earth.avif'))
 
 light_l = Ra::Light.new(
-  position: Vector[+5, +3, -9, Ra::Tuple::POINT],
-  intensity: Ra::Color.uniform(0.5),
+  position: Vector[+3.0, +2.0, -5.0, Ra::Tuple::POINT],
+  intensity: Ra::Color.uniform(0.75),
 )
 
 light_r = Ra::Light.new(
-  position: Vector[-5, +3, -9, Ra::Tuple::POINT],
-  intensity: Ra::Color.uniform(0.5),
+  position: Vector[-3.0, +2.0, -5.0, Ra::Tuple::POINT],
+  intensity: Ra::Color.uniform(0.75),
 )
 
 camera = Ra::Camera.new(
@@ -41,7 +41,7 @@ camera = Ra::Camera.new(
   fov: config[:fov] * Math::PI / 180,
   transform: Ra::Transform.view(
     from: Vector[0, +1.5, -4.0, Ra::Tuple::POINT],
-    to: Vector[0, 0, 0, Ra::Tuple::POINT],
+    to: Vector[0, +0.5, 0, Ra::Tuple::POINT],
     up: Vector[0, 1, 0, Ra::Tuple::VECTOR],
   ),
 )
@@ -57,18 +57,27 @@ floor = Ra::Shape::Plane.new(
     reflective: 0.2,
   ),
   transform: Ra::Transform
-    .rotate_y(Math::PI / 4)
-    .scale(0.5, 0.5, 0.5),
+    .rotate_y(Math::PI / 4),
+)
+
+ceiling = Ra::Shape::Plane.new(
+  material: Ra::Material.new(
+    base: Ra::Pattern::Stripes.new(
+      colors: [
+        Ra::Color.hex('#e4e4e7'),
+        Ra::Color.hex('#e7e5e4'),
+      ],
+    ),
+  ),
+  transform: Ra::Transform
+    .translate(0, +3.0, 0)
+    .scale(0.2, 0.2, 0.2)
+    .rotate_y(Math::PI / 4),
 )
 
 wall_l = Ra::Shape::Plane.new(
   material: Ra::Material.new(
-    base: Ra::Pattern::Stripes.new(
-      colors: [
-        Ra::Color.hex('#f5f5f4'),
-        Ra::Color.hex('#e7e5e4'),
-      ],
-    ),
+    base: Ra::Color.hex('#6b21a8'),
   ),
   transform: Ra::Transform
     .translate(0, 0, +3.0)
@@ -78,12 +87,7 @@ wall_l = Ra::Shape::Plane.new(
 
 wall_r = Ra::Shape::Plane.new(
   material: Ra::Material.new(
-    base: Ra::Pattern::Stripes.new(
-      colors: [
-        Ra::Color.hex('#f5f5f4'),
-        Ra::Color.hex('#e7e5e4'),
-      ],
-    ),
+    base: Ra::Color.hex('#9f1239'),
   ),
   transform: Ra::Transform
     .translate(0, 0, +3.0)
@@ -92,11 +96,14 @@ wall_r = Ra::Shape::Plane.new(
 )
 
 sphere = Ra::Shape::Sphere.new(
-  material: Ra::Material.new(base: earth),
+  material: Ra::Material.new(
+    base: earth,
+    reflective: 0.3,
+  ),
   transform: Ra::Transform
-    .translate(0, +0.5, -2.0)
+    .translate(0, +0.6, -2.0)
     .rotate_y(Math::PI / 2)
-    .scale(0.5, 0.5, 0.5),
+    .scale(0.6, 0.6, 0.6),
 )
 
 cube_l = Ra::Shape::Cube.new(
@@ -105,11 +112,11 @@ cube_l = Ra::Shape::Cube.new(
       color_a: Ra::Color.hex('#f43f5e'),
       color_b: Ra::Color.hex('#8b5cf6'),
     ),
-    reflective: 0.4,
+    reflective: 0.3,
   ),
   transform: Ra::Transform
-    .translate(+1.0, +0.3, -1.0)
-    .scale(0.3, 0.3, 0.3)
+    .translate(+1.6, +0.4, -0.8)
+    .scale(0.4, 0.4, 0.4)
     .rotate_y(-Math::PI / 8),
 )
 
@@ -119,11 +126,11 @@ cube_r = Ra::Shape::Cube.new(
       color_a: Ra::Color.hex('#84cc16'),
       color_b: Ra::Color.hex('#f97316'),
     ),
-    reflective: 0.4,
+    reflective: 0.3,
   ),
   transform: Ra::Transform
-    .translate(-1.0, +0.3, -1.0)
-    .scale(0.3, 0.3, 0.3)
+    .translate(-1.6, +0.4, -0.8)
+    .scale(0.4, 0.4, 0.4)
     .rotate_y(+Math::PI / 8),
 )
 
@@ -134,6 +141,7 @@ lights = [
 
 shapes = [
   floor,
+  ceiling,
   wall_l,
   wall_r,
   sphere,
