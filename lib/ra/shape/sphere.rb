@@ -32,6 +32,8 @@ module Ra
     #
     # A discriminant <0 indicates the ray does not intersect the sphere.
     class Sphere < Base
+      RADIUS = 1
+
       # @param point [Vector] <x, y, z, Tuple::POINT>
       # @return [Vector] <u = 0.0..1.0, v = 0.0..1.0>
       def uv_point(point:)
@@ -55,10 +57,10 @@ module Ra
         origin = ray.origin - Vector[0, 0, 0, Ra::Tuple::POINT]
         direction = ray.direction
 
-        quadratic(
+        Quadratic.solve(
           a: direction.dot(direction),
           b: 2 * direction.dot(origin),
-          c: origin.dot(origin) - 1,
+          c: origin.dot(origin) - RADIUS,
         )
       end
 
@@ -66,24 +68,6 @@ module Ra
       # @return [Ra::Tuple]
       def l_normal(point:)
         point - Vector[0, 0, 0, Ra::Tuple::VECTOR]
-      end
-
-      private
-
-      # (-b ± √(b² - 4ac)) / (2a)
-      #
-      # @param a [Numeric]
-      # @param b [Numeric]
-      # @param c [Numeric]
-      # @return [Array<Numeric>]
-      def quadratic(a:, b:, c:)
-        discriminant = (b**2) - (4 * a * c)
-        return [] if discriminant.negative?
-
-        [
-          (-b - Math.sqrt(discriminant)) / (2 * a),
-          (-b + Math.sqrt(discriminant)) / (2 * a),
-        ]
       end
     end
   end
