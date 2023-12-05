@@ -106,7 +106,7 @@ sphere = Ra::Shape::Sphere.new(
     .scale(0.6, 0.6, 0.6),
 )
 
-cube_l = Ra::Shape::Cube.new(
+cube = Ra::Shape::Cube.new(
   material: Ra::Material.new(
     base: Ra::Pattern::Gradient.new(
       color_a: Ra::Color.hex('#f43f5e'),
@@ -120,7 +120,7 @@ cube_l = Ra::Shape::Cube.new(
     .rotate_y(-Math::PI / 8),
 )
 
-cube_r = Ra::Shape::Cube.new(
+cylinder = Ra::Shape::Cylinder.new(
   material: Ra::Material.new(
     base: Ra::Pattern::Gradient.new(
       color_a: Ra::Color.hex('#84cc16'),
@@ -145,8 +145,8 @@ shapes = [
   wall_l,
   wall_r,
   sphere,
-  cube_l,
-  cube_r,
+  cube,
+  cylinder,
 ].freeze
 
 world = Ra::World.new(lights:, shapes:)
