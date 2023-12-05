@@ -42,5 +42,25 @@ module Ra
 
       Surface.new(shape:, eyev:, normalv:, reflectv:, point:)
     end
+
+    # @return [Vector]
+    def position
+      @position ||= @ray.position(t: @t)
+    end
+
+    # @return [Numeric]
+    def x
+      position[0]
+    end
+
+    # @return [Numeric]
+    def y
+      position[1]
+    end
+
+    # @return [Numeric]
+    def z
+      position[1]
+    end
   end
 end

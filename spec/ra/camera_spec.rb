@@ -95,10 +95,10 @@ describe Ra::Camera do
       let(:y) { 1 }
 
       it { expect(ray.origin).to eq(build(:point, x: 0, y: 0, z: 0)) }
-      it { expect(ray.direction[0].round(8)).to eq(0.0) }
-      it { expect(ray.direction[1].round(8)).to eq(0.0) }
-      it { expect(ray.direction[2].round(8)).to eq(-1.0) }
-      it { expect(ray.direction[3]).to eq(Ra::Tuple::VECTOR) }
+      it { expect(ray.direction_x.round(8)).to eq(0.0) }
+      it { expect(ray.direction_y.round(8)).to eq(0.0) }
+      it { expect(ray.direction_z.round(8)).to eq(-1.0) }
+      it { expect(ray.direction_w).to eq(Ra::Tuple::VECTOR) }
     end
 
     context 'when w = 5 / h = 3 / x = 0 / y = 0' do
@@ -108,10 +108,10 @@ describe Ra::Camera do
       let(:y) { 0 }
 
       it { expect(ray.origin).to eq(build(:point, x: 0, y: 0, z: 0)) }
-      it { expect(ray.direction[0].round(8)).to eq(0.59628479) }
-      it { expect(ray.direction[1].round(8)).to eq(0.29814240) }
-      it { expect(ray.direction[2].round(8)).to eq(-0.74535599) }
-      it { expect(ray.direction[3].round(8)).to eq(Ra::Tuple::VECTOR) }
+      it { expect(ray.direction_x.round(8)).to eq(0.59628479) }
+      it { expect(ray.direction_y.round(8)).to eq(0.29814240) }
+      it { expect(ray.direction_z.round(8)).to eq(-0.74535599) }
+      it { expect(ray.direction_w.round(8)).to eq(Ra::Tuple::VECTOR) }
     end
   end
 end

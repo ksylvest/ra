@@ -30,8 +30,8 @@ module Ra
       # @param ray [Ra::Ray] local
       # @return [Array<Numeric>]
       def t_intersect(ray:)
-        origin_y = ray.origin[1]
-        direction_y = ray.direction[1]
+        origin_y = ray.origin_y
+        direction_y = ray.direction_y
 
         return [] if direction_y.abs < EPSILON
 

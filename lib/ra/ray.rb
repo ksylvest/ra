@@ -49,5 +49,86 @@ module Ra
     def ==(other)
       origin == other.origin && direction == other.direction
     end
+
+    # @param t [Numeric]
+    # @return [Numeric]
+    def x(t:)
+      origin_x + (direction_x * t)
+    end
+
+    def y(t:)
+      origin_y + (direction_y * t)
+    end
+
+    def z(t:)
+      origin_z + (direction_z * t)
+    end
+
+    # The time t when the ray is at x
+    # @param x [Numeric]
+    # @return [Numeric]
+    def t_x(x)
+      return if direction_x.zero?
+
+      (x - origin_x) / direction_x
+    end
+
+    # The time t when the ray is at y
+    # @param y [Numeric]
+    # @return [Numeric, nil]
+    def t_y(y)
+      return if direction_y.zero?
+
+      (y - origin_y) / direction_y
+    end
+
+    # The time t when the ray is at z
+    # @param z [Numeric]
+    # @return [Numeric, nil]
+    def t_z(z)
+      return if direction_z.zero?
+
+      (z - origin_z) / direction_z
+    end
+
+    # @return [Numeric]
+    def direction_x
+      @direction[0]
+    end
+
+    # @return [Numeric]
+    def direction_y
+      @direction[1]
+    end
+
+    # @return [Numeric]
+    def direction_z
+      @direction[2]
+    end
+
+    # @return [0] 0 = vector / 1 = point
+    def direction_w
+      @direction[3]
+    end
+
+    # @return [Numeric]
+    def origin_x
+      @origin[0]
+    end
+
+    # @return [Numeric]
+    def origin_y
+      @origin[1]
+    end
+
+    # @return [Numeric]
+    def origin_z
+      @origin[2]
+    end
+
+    # @return [1] 0 = vector / 1 = point
+    def origin_w
+      @origin[3]
+    end
   end
 end
