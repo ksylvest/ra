@@ -49,12 +49,12 @@ GEM
     parser (3.2.2.4)
       ast (~> 2.4.1)
       racc
-    psych (5.1.1.1)
+    psych (5.1.2)
       stringio
     racc (1.7.3)
     rainbow (3.1.1)
     rake (13.1.0)
-    rdoc (6.6.0)
+    rdoc (6.7.0)
       psych (>= 4.0.0)
     regexp_parser (2.8.2)
     reline (0.4.0)
@@ -102,7 +102,7 @@ GEM
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
     slop (4.10.1)
-    stringio (3.0.9)
+    stringio (3.1.1)
     strscan (3.1.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
