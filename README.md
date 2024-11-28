@@ -1,5 +1,11 @@
 # Ra
 
+[![LICENSE](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/ksylvest/ra/blob/main/LICENSE)
+[![RubyGems](https://img.shields.io/gem/v/ra)](https://rubygems.org/gems/ra)
+[![GitHub](https://img.shields.io/badge/github-repo-blue.svg)](https://github.com/ksylvest/ra)
+[![Yard](https://img.shields.io/badge/docs-site-blue.svg)](https://ra.ksylvest.com)
+[![CircleCI](https://img.shields.io/circleci/build/github/ksylvest/ra)](https://circleci.com/gh/ksylvest/ra)
+
 Named for [Ra](https://en.wikipedia.org/wiki/Ra) - arguably the original ray tracer.
 
 ## Installation
