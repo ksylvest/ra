@@ -9,6 +9,12 @@ executors:
       - image: cimg/ruby:3.3.6
 
 jobs:
+  doc:
+    executor: default
+    steps:
+      - checkout
+      - ruby/install-deps
+      - run: bundle exec yard doc
   rspec:
     executor: default
     steps:
@@ -27,15 +33,14 @@ jobs:
       - checkout
       - ruby/install-deps
       - run: bundle exec rake release
+
 workflows:
   build:
     jobs:
+      - doc
       - rubocop
       - rspec
       - release:
-          requires:
-            - rubocop
-            - rspec
           filters:
             tags:
               only: /^v\d+\.\d+\.\d+$/
