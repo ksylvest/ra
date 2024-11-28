@@ -3,7 +3,17 @@
 module Ra
   # An intersection tracks the time t at which a shape is intersected by a ray.
   class Intersection
-    attr_accessor :t, :ray, :shape
+    # @!attribute t
+    #   @return [Numeric]
+    attr_accessor :t
+
+    # @attribute ray
+    #   @return [Ra::Ray]
+    attr_accessor :ray
+
+    # @attribute shape
+    #   @return [Ra::Shape::Base]
+    attr_accessor :shape
 
     # @param intersections Array<Ra::Intersection>
     # @return [Ra::Intersection, nil]

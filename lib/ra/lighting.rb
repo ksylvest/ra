@@ -3,7 +3,17 @@
 module Ra
   # Lighting encaspulates a [Phong Reflection Model](https://en.wikipedia.org/wiki/phong_reflection_model).
   class Lighting
-    attr_accessor :light, :surface, :shadowed
+    # @!attribute surface
+    #   @return [Ra::Surface]
+    attr_accessor :surface
+
+    # @!attribute shadowed
+    #   @return [Boolean]
+    attr_accessor :shadowed
+
+    # @!attribute light
+    #   @return [Ra::Light]
+    attr_accessor :light
 
     # @param light [Ra::Light]
     # @param surface [Ra::Surface]

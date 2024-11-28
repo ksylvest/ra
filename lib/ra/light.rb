@@ -9,7 +9,13 @@ module Ra
   #     position: Vector[0, 0, 0, Ra::Tuple::POINT],
   #   )
   class Light
-    attr_accessor :intensity, :position
+    # @!attribute intensity
+    #   @return [Ra::Color]
+    attr_accessor :intensity
+
+    # @!attribute position
+    #   @return [Vector]
+    attr_accessor :position
 
     # @param intensity [Ra::Color]
     # @param position [Vector]

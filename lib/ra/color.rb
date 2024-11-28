@@ -17,7 +17,17 @@ module Ra
   #   )
   #   color.ppm == "128 179 230"
   class Color
-    attr_accessor :r, :g, :b
+    # @!attribute r
+    #   @return [Numeric]
+    attr_accessor :r
+
+    # @!attribute g
+    #   @return [Numeric]
+    attr_accessor :g
+
+    # @!attribute b
+    #   @return [Numeric]
+    attr_accessor :b
 
     PRECISION = 255
 
