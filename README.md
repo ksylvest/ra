@@ -21,4 +21,4 @@ ra -w 2560 -h 2048 > sample.ppm
 convert -quality 80 sample.ppm sample.avif
 ```
 
-![Sample](./sample.avif)
+![Sample](https://github.com/ksylvest/ra/raw/main/sample.avif)
