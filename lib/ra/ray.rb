@@ -62,10 +62,14 @@ module Ra
       origin_x + (direction_x * t)
     end
 
+    # @param t [Numeric]
+    # @return [Numeric]
     def y(t:)
       origin_y + (direction_y * t)
     end
 
+    # @param t [Numeric]
+    # @return [Numeric]
     def z(t:)
       origin_z + (direction_z * t)
     end
