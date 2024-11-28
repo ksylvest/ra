@@ -33,6 +33,7 @@ GEM
       irb (~> 1.10)
       reline (>= 0.3.8)
     diff-lcs (1.5.1)
+    docile (1.4.1)
     drb (2.2.1)
     factory_bot (6.5.0)
       activesupport (>= 5.0.0)
@@ -97,6 +98,12 @@ GEM
       rubocop (~> 1.61)
     ruby-progressbar (1.13.0)
     securerandom (0.3.2)
+    simplecov (0.22.0)
+      docile (~> 1.1)
+      simplecov-html (~> 0.11)
+      simplecov_json_formatter (~> 0.1)
+    simplecov-html (0.13.1)
+    simplecov_json_formatter (0.1.4)
     slop (4.10.1)
     stringio (3.1.2)
     tzinfo (2.0.6)
@@ -124,6 +131,7 @@ DEPENDENCIES
   rubocop-factory_bot
   rubocop-rake
   rubocop-rspec
+  simplecov
   yard
 
 BUNDLED WITH
