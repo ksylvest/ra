@@ -23,7 +23,7 @@ module Ra
     def each
       @camera.each do |y, x, ray|
         color = @world.color(ray:)
-        yield(Ra::Pixel[y, x, color])
+        yield(Ra::Pixel.new(x:, y:, color:))
       end
     end
 
