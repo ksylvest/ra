@@ -94,34 +94,34 @@ module Ra
     # @param x [Numeric]
     # @param y [Numeric]
     # @param z [Numeric]
-    def translate(...)
-      self * self.class.translate(...)
+    def translate(x, y, z)
+      self * self.class.translate(x, y, z)
     end
 
     # @return [Ra::Transform]
     # @param x [Numeric]
     # @param y [Numeric]
     # @param z [Numeric]
-    def scale(...)
-      self * self.class.scale(...)
+    def scale(x, y, z)
+      self * self.class.scale(x, y, z)
     end
 
     # @return [Ra::Transform]
     # @param rotation [Numeric]
-    def rotate_x(...)
-      self * self.class.rotate_x(...)
+    def rotate_x(rotation)
+      self * self.class.rotate_x(rotation)
     end
 
     # @return [Ra::Transform]
     # @param rotation [Numeric]
-    def rotate_y(...)
-      self * self.class.rotate_y(...)
+    def rotate_y(rotation)
+      self * self.class.rotate_y(rotation)
     end
 
     # @return [Ra::Transform]
     # @param rotation [Numeric]
-    def rotate_z(...)
-      self * self.class.rotate_z(...)
+    def rotate_z(rotation)
+      self * self.class.rotate_z(rotation)
     end
 
     # Avoid re-computing a transform inverse by memoizing.
