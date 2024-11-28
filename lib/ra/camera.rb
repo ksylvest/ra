@@ -26,15 +26,29 @@ module Ra
   class Camera
     include Enumerable
 
-    attr_accessor :h, :w, :fov, :transform
+    # @!attribute h
+    #   @return [Integer]
+    attr_accessor :h
+
+    # @!attribute w
+    #   @return [Integer]
+    attr_accessor :w
+
+    # @!attribute fov
+    #   @return [Numeric]
+    attr_accessor :fov
+
+    # @!attribute transform
+    #   @return [Ra::Transform]
+    attr_accessor :transform
 
     DEFAULT_W = 1280
     DEFAULT_H = 1024
     DEFAULT_FOV = Math::PI / 3
 
     # @param transform [Ra::Transform]
-    # @param h [Numeric]
-    # @param w [Numeric]
+    # @param h [Integer]
+    # @param w [Integer]
     # @param fov [Numeric]
     def initialize(transform: Transform::IDENTITY, h: DEFAULT_H, w: DEFAULT_W, fov: DEFAULT_FOV)
       @transform = transform

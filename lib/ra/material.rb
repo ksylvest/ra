@@ -11,14 +11,36 @@ module Ra
   #    shininess: 200,
   #   )
   class Material
-    attr_accessor :base, :ambient, :diffuse, :reflective, :specular, :shininess
+    # @!attribute base
+    #   @return [Ra::Color, Ra::Pattern::Base]
+    attr_accessor :base
+
+    # @!attribute ambient
+    #   @return [Float]
+    attr_accessor :ambient
+
+    # @!attribute diffuse
+    #   @return [Float]
+    attr_accessor :diffuse
+
+    # @!attribute reflective
+    #   @return [Float]
+    attr_accessor :reflective
+
+    # @!attribute specular
+    #   @return [Float]
+    attr_accessor :specular
+
+    # @!attribute shininess
+    #   @return [Integer]
+    attr_accessor :shininess
 
     # @param base [Ra::Color, Ra::Pattern:::Base]
     # @param ambient [Float] between 0.0 and 1.0
     # @param diffuse [Float] between 0.0 and 1.0
     # @param reflective [Float] between 0.0 and 1.0
     # @param specular [Float] between 0.0 and 1.0
-    # @param shininess [Numeric]
+    # @param shininess [Integer]
     def initialize(base:, ambient: 0.0, diffuse: 0.8, reflective: 0.0, specular: 0.2, shininess: 80)
       raise ArgumentError, "ambient=#{ambient} must be between 0 and 1" unless ambient.between?(0, 1)
       raise ArgumentError, "ambient=#{diffuse} must be between 0 and 1" unless diffuse.between?(0, 1)

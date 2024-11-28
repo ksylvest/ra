@@ -21,7 +21,13 @@ module Ra
   #   )
   #   ray.transform(transform: Ra::Transform.scale(1, 2, 3))
   class Ray
-    attr_accessor :origin, :direction
+    # @!attribute origin
+    #   @return [Vector]
+    attr_accessor :origin
+
+    # @!attribute direction
+    #   @return [Vector]
+    attr_accessor :direction
 
     # @param origin [Vector] e.g. Vector[1, 2, 3, Ra::Tuple::POINT]
     # @param direction [Vector] e.g. Vector[1, 2, 3, Ra::Tuple::VECTOR]

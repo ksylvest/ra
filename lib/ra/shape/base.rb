@@ -6,6 +6,8 @@ module Ra
     # methods `l_normal` and `t_intersect`. Both methods use a point / ray
     # with a local transform applied.
     class Base
+      # @!attribute material
+      #   @return [Ra::Material]
       attr_accessor :material
 
       # @param material [Ra::Material]
