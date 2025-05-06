@@ -44,7 +44,7 @@ module Ra
           0,
           1,
           0,
-          Ra::Tuple::VECTOR
+          Ra::Tuple::VECTOR,
         ]
       end
     end
