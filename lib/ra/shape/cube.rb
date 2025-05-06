@@ -61,7 +61,7 @@ module Ra
           (is_x = x > y && x > z) ? 1 : 0,
           (is_y = y > x && y > z) ? 1 : 0,
           is_x || is_y ? 0 : 1,
-          Ra::Tuple::VECTOR
+          Ra::Tuple::VECTOR,
         ]
       end
 
