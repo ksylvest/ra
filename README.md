@@ -5,8 +5,6 @@
 [![GitHub](https://img.shields.io/badge/github-repo-blue.svg)](https://github.com/ksylvest/ra)
 [![Yard](https://img.shields.io/badge/docs-site-blue.svg)](https://ra.ksylvest.com)
 [![CircleCI](https://img.shields.io/circleci/build/github/ksylvest/ra)](https://circleci.com/gh/ksylvest/ra)
-[![Code Climate Maintainability](https://img.shields.io/codeclimate/maintainability/ksylvest/ra)](https://codeclimate.com/github/ksylvest/ra)
-[![Code Climate Coverage](https://img.shields.io/codeclimate/coverage/ksylvest/ra)](https://codeclimate.com/github/ksylvest/ra)
 
 Named for [Ra](https://en.wikipedia.org/wiki/Ra) - arguably the original ray tracer.
 
