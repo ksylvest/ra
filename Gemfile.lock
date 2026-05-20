@@ -132,7 +132,7 @@ GEM
     unicode-emoji (4.2.0)
     uri (1.1.1)
     yard (0.9.43)
-    zeitwerk (2.8.0)
+    zeitwerk (2.8.1)
 
 PLATFORMS
   arm64-darwin
