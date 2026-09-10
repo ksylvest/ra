@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :material, class: 'Ra::Material' do
+  factory :material, class: "Ra::Material" do
     initialize_with { new(**attributes) }
 
     base factory: :color

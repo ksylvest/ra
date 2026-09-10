@@ -7,7 +7,7 @@ module Ra
       # @param point [Vector] <u = 0.0..1.0, v = 0.0..1.0>
       # @return [Ra::Color]
       def color(point:)
-        raise NotImplementedError, '#color must be implemented by a concrete subclass'
+        raise NotImplementedError, "#color must be implemented by a concrete subclass"
       end
     end
   end

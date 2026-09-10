@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :surface, class: 'Ra::Surface' do
+  factory :surface, class: "Ra::Surface" do
     initialize_with { new(**attributes) }
 
     shape factory: :plane

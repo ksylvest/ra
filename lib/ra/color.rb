@@ -139,7 +139,7 @@ module Ra
       r_val == other.r_val && g_val == other.g_val && b_val == other.b_val
     end
 
-    protected
+  protected
 
     # @return [Integer]
     def r_val(precision: PRECISION)
@@ -156,7 +156,7 @@ module Ra
       val(value: b, precision:)
     end
 
-    private
+  private
 
     # @param value [Numeric]
     # @param precision [Integer]

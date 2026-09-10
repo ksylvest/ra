@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
+require "spec_helper"
 
 describe Ra::Transform do
   subject(:transform) { build(:transform) }
 
   it { expect(transform).to be_a(Matrix) }
 
-  describe '::IDENTITY' do
+  describe "::IDENTITY" do
     subject(:identity) { described_class::IDENTITY }
 
     let(:result) do
@@ -22,10 +22,10 @@ describe Ra::Transform do
     it { expect(identity).to eq(result) }
   end
 
-  describe '.view' do
+  describe ".view" do
     subject(:view) { described_class.view(from:, to:, up:) }
 
-    context 'with the default from / to / up' do
+    context "with the default from / to / up" do
       let(:from) { build(:point, x: 0, y: 0, z: 0) }
       let(:to) { build(:point, x: 0, y: 0, z: -1) }
       let(:up) { build(:vector, x: 0, y: 1, z: 0) }
@@ -33,7 +33,7 @@ describe Ra::Transform do
       it { expect(view).to eq(described_class::IDENTITY) }
     end
 
-    context 'with a customized from / to / up' do
+    context "with a customized from / to / up" do
       let(:from) { build(:point, x: 0, y: 0, z: 0) }
       let(:to) { build(:point, x: 0, y: 0, z: 1) }
       let(:up) { build(:vector, x: 0, y: 1, z: 0) }
@@ -42,7 +42,7 @@ describe Ra::Transform do
     end
   end
 
-  describe '.translate' do
+  describe ".translate" do
     subject(:translate) { described_class.translate(1, 2, 3) }
 
     let(:result) do
@@ -58,7 +58,7 @@ describe Ra::Transform do
     it { expect(translate * Vector[1, 2, 3, 1]).to eq(Vector[2, 4, 6, 1]) }
   end
 
-  describe '.scale' do
+  describe ".scale" do
     subject(:scale) { described_class.scale(1, 2, 3) }
 
     let(:result) do
@@ -74,7 +74,7 @@ describe Ra::Transform do
     it { expect(scale * Vector[1, 2, 3, 0]).to eq(Vector[1, 4, 9, 0]) }
   end
 
-  describe '.rotate_x' do
+  describe ".rotate_x" do
     subject(:rotate_x) { described_class.rotate_x(rotation) }
 
     let(:rotation) { Math::PI / 4 }
@@ -91,7 +91,7 @@ describe Ra::Transform do
     it { expect(rotate_x).to eq(result) }
   end
 
-  describe '.rotate_y' do
+  describe ".rotate_y" do
     subject(:rotate_y) { described_class.rotate_y(rotation) }
 
     let(:rotation) { Math::PI / 4 }
@@ -108,7 +108,7 @@ describe Ra::Transform do
     it { expect(rotate_y).to eq(result) }
   end
 
-  describe '.rotate_z' do
+  describe ".rotate_z" do
     subject(:rotate_z) { described_class.rotate_z(rotation) }
 
     let(:rotation) { Math::PI / 4 }
@@ -125,7 +125,7 @@ describe Ra::Transform do
     it { expect(rotate_z).to eq(result) }
   end
 
-  describe '#translate' do
+  describe "#translate" do
     subject(:translate) { identity.translate(1, 2, 3) }
 
     let(:identity) { build(:transform) }
@@ -133,7 +133,7 @@ describe Ra::Transform do
     it { expect(translate).to eq(described_class.translate(1, 2, 3)) }
   end
 
-  describe '#scale' do
+  describe "#scale" do
     subject(:scale) { identity.scale(1, 2, 3) }
 
     let(:identity) { build(:transform) }
@@ -141,7 +141,7 @@ describe Ra::Transform do
     it { expect(scale).to eq(described_class.scale(1, 2, 3)) }
   end
 
-  describe '#rotate_x' do
+  describe "#rotate_x" do
     subject(:rotate_x) { described_class::IDENTITY.rotate_x(rotation) }
 
     let(:rotation) { Math::PI }
@@ -151,7 +151,7 @@ describe Ra::Transform do
     it { expect(rotate_x).to eq(result) }
   end
 
-  describe '#rotate_y' do
+  describe "#rotate_y" do
     subject(:rotate_y) { described_class::IDENTITY.rotate_y(rotation) }
 
     let(:rotation) { Math::PI }
@@ -161,7 +161,7 @@ describe Ra::Transform do
     it { expect(rotate_y).to eq(result) }
   end
 
-  describe '#rotate_z' do
+  describe "#rotate_z" do
     subject(:rotate_z) { described_class::IDENTITY.rotate_z(rotation) }
 
     let(:rotation) { Math::PI / 2 }

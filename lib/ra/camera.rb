@@ -105,7 +105,7 @@ module Ra
       @half_h ||= @h < @w ? (half_view * @h / @w) : half_view
     end
 
-    private
+  private
 
     # @param y [Float]
     # @return [Float]

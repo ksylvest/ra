@@ -1,13 +1,13 @@
 version: 2.1
 
 orbs:
-  ruby: circleci/ruby@2.5.3
-  qlty: qltysh/qlty-orb@0.0.11
+  ruby: circleci/ruby@3.0.0
+  qlty: qltysh/qlty-orb@0.1.2
 
 executors:
   default:
     docker:
-      - image: cimg/ruby:3.4.3
+      - image: cimg/ruby:4.0.6
 
 jobs:
   doc:

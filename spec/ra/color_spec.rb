@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
+require "spec_helper"
 
 describe Ra::Color do
   subject(:color) { build(:color) }
@@ -9,23 +9,23 @@ describe Ra::Color do
   it { expect(color.g).to eq(0.5) }
   it { expect(color.b).to eq(0.7) }
 
-  describe '.hex' do
+  describe ".hex" do
     subject(:hex) { described_class.hex(value) }
 
     context 'with the value "#000000"' do
-      let(:value) { '#000000' }
+      let(:value) { "#000000" }
 
       it { expect(hex).to eq(build(:color, :black)) }
     end
 
     context 'with the value "#FFFFFF"' do
-      let(:value) { '#FFFFFF' }
+      let(:value) { "#FFFFFF" }
 
       it { expect(hex).to eq(build(:color, :white)) }
     end
   end
 
-  describe '.black' do
+  describe ".black" do
     subject(:black) { described_class.black }
 
     it { expect(black.r).to eq(0.0) }
@@ -33,7 +33,7 @@ describe Ra::Color do
     it { expect(black.b).to eq(0.0) }
   end
 
-  describe '.white' do
+  describe ".white" do
     subject(:white) { described_class.white }
 
     it { expect(white.r).to eq(1.0) }
@@ -41,7 +41,7 @@ describe Ra::Color do
     it { expect(white.b).to eq(1.0) }
   end
 
-  describe '.uniform' do
+  describe ".uniform" do
     subject(:uniform) { described_class.uniform(0.5) }
 
     it { expect(uniform.r).to eq(0.5) }
@@ -49,7 +49,7 @@ describe Ra::Color do
     it { expect(uniform.b).to eq(0.5) }
   end
 
-  describe '#+' do
+  describe "#+" do
     it do
       color_a = build(:color, r: 0.1, g: 0.2, b: 0.3)
       color_b = build(:color, r: 0.2, g: 0.3, b: 0.4)
@@ -63,7 +63,7 @@ describe Ra::Color do
     end
   end
 
-  describe '# -' do
+  describe "# -" do
     it do
       source = build(:color, r: 0.2, g: 0.5, b: 0.7)
       target = build(:color, r: 0.1, g: 0.2, b: 0.3)
@@ -77,7 +77,7 @@ describe Ra::Color do
     end
   end
 
-  describe '#*' do
+  describe "#*" do
     it do
       source = build(:color, r: 0.1, g: 0.2, b: 0.3)
       target = build(:color, r: 0.2, g: 0.3, b: 0.4)
@@ -86,7 +86,7 @@ describe Ra::Color do
     end
   end
 
-  describe '#/' do
+  describe "#/" do
     it do
       source = build(:color, r: 0.1, g: 0.2, b: 0.3)
       target = build(:color, r: 0.2, g: 0.4, b: 0.6)

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 FactoryBot.define do
-  factory :camera, class: 'Ra::Camera' do
+  factory :camera, class: "Ra::Camera" do
     initialize_with { new(**attributes) }
 
     transform { Ra::Transform::IDENTITY }

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'mini_magick'
+require "mini_magick"
 
 module Ra
   module Pattern
@@ -26,7 +26,7 @@ module Ra
         )
       end
 
-      private
+    private
 
       # @return [Array<0..255,0..255,0..255>]
       def pixel(point:)

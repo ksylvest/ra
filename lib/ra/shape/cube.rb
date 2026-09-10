@@ -65,7 +65,7 @@ module Ra
         ]
       end
 
-      private
+    private
 
       # @param ray [Ra::Ray]
       # @return [Integer]

@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
+require "spec_helper"
 
 describe Ra::Quadratic do
-  describe '.solve' do
+  describe ".solve" do
     subject(:solve) { described_class.solve(a:, b:, c:) }
 
     let(:a) { 2 }

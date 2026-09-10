@@ -69,7 +69,7 @@ module Ra
         Vector[point[0], 0, point[2], Tuple::VECTOR]
       end
 
-      private
+    private
 
       # @param ray [Ra::Ray] local
       # @return [Array<Numeric>]

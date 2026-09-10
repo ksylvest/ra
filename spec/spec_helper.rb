@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'debug'
-require 'simplecov'
-require 'ra'
+require "debug"
+require "simplecov"
+require "ra"
 
 SimpleCov.start do
   enable_coverage :branch
