@@ -41,19 +41,19 @@ module Ra
       # @param point [Vector] <x, y, z, Tuple::POINT>
       # @return [Vector] <u = 0.0..1.0, v = 0.0..1.0>
       def uv_point(point:)
-        raise NotImplementedError, '#uv_point must be implemented by a concrete subclass'
+        raise NotImplementedError, "#uv_point must be implemented by a concrete subclass"
       end
 
       # @param ray [Ra::Ray] local
       # @return [Array<Intersection>]
       def t_intersect(ray:)
-        raise NotImplementedError, '#t_intersect must be implemented by a concrete subclass'
+        raise NotImplementedError, "#t_intersect must be implemented by a concrete subclass"
       end
 
       # @param point [Vector] local
       # @return [Vector]
       def l_normal(point:)
-        raise NotImplementedError, '#l_normal must be implemented by a concrete subclass'
+        raise NotImplementedError, "#l_normal must be implemented by a concrete subclass"
       end
     end
   end

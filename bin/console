@@ -2,8 +2,8 @@
 
 # frozen_string_literal: true
 
-require 'bundler/setup'
-require 'ra'
+require "bundler/setup"
+require "ra"
 
-require 'irb'
+require "irb"
 IRB.start(__FILE__)

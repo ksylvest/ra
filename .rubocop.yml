@@ -1,3 +1,6 @@
+inherit_gem:
+  rubocop-basic: rubocop.yml
+
 plugins:
   - rubocop-factory_bot
   - rubocop-rake

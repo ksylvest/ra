@@ -2,28 +2,28 @@
 
 # frozen_string_literal: true
 
-require 'ra'
-require 'slop'
+require "ra"
+require "slop"
 
 config = Slop.parse(ARGV) do |options|
-  options.banner = 'Usage: ra -w 2560 -h 2048 | convert - sample.avif'
+  options.banner = "Usage: ra -w 2560 -h 2048 | convert - sample.avif"
 
-  options.integer '-w', '--width', 'width', default: 2560
-  options.integer '-h', '--height', 'height', default: 2048
-  options.integer '-fov', 'degrees', default: 90
+  options.integer "-w", "--width", "width", default: 2560
+  options.integer "-h", "--height", "height", default: 2048
+  options.integer "-fov", "degrees", default: 90
 
-  options.on('--help', 'help') do
+  options.on("--help", "help") do
     Ra.logger.log(options)
     exit
   end
 
-  options.on('--version', 'version') do
+  options.on("--version", "version") do
     Ra.logger.log(Ra::VERSION)
     exit
   end
 end
 
-earth = Ra::Pattern::Texture.new(path: File.join(File.dirname(__FILE__), '..', 'assets/earth.avif'))
+earth = Ra::Pattern::Texture.new(path: File.join(File.dirname(__FILE__), "..", "assets/earth.avif"))
 
 light_l = Ra::Light.new(
   position: Vector[+3.0, +2.0, -5.0, Ra::Tuple::POINT],
@@ -50,8 +50,8 @@ floor = Ra::Shape::Plane.new(
   material: Ra::Material.new(
     base: Ra::Pattern::Checkers.new(
       colors: [
-        Ra::Color.hex('#e2e8f0'),
-        Ra::Color.hex('#1e293b'),
+        Ra::Color.hex("#e2e8f0"),
+        Ra::Color.hex("#1e293b"),
       ],
     ),
     reflective: 0.2,
@@ -64,8 +64,8 @@ ceiling = Ra::Shape::Plane.new(
   material: Ra::Material.new(
     base: Ra::Pattern::Stripes.new(
       colors: [
-        Ra::Color.hex('#e4e4e7'),
-        Ra::Color.hex('#e7e5e4'),
+        Ra::Color.hex("#e4e4e7"),
+        Ra::Color.hex("#e7e5e4"),
       ],
     ),
   ),
@@ -77,7 +77,7 @@ ceiling = Ra::Shape::Plane.new(
 
 wall_l = Ra::Shape::Plane.new(
   material: Ra::Material.new(
-    base: Ra::Color.hex('#6b21a8'),
+    base: Ra::Color.hex("#6b21a8"),
   ),
   transform: Ra::Transform
     .translate(0, 0, +3.0)
@@ -87,7 +87,7 @@ wall_l = Ra::Shape::Plane.new(
 
 wall_r = Ra::Shape::Plane.new(
   material: Ra::Material.new(
-    base: Ra::Color.hex('#9f1239'),
+    base: Ra::Color.hex("#9f1239"),
   ),
   transform: Ra::Transform
     .translate(0, 0, +3.0)
@@ -109,8 +109,8 @@ sphere = Ra::Shape::Sphere.new(
 cube = Ra::Shape::Cube.new(
   material: Ra::Material.new(
     base: Ra::Pattern::Gradient.new(
-      color_a: Ra::Color.hex('#f43f5e'),
-      color_b: Ra::Color.hex('#8b5cf6'),
+      color_a: Ra::Color.hex("#f43f5e"),
+      color_b: Ra::Color.hex("#8b5cf6"),
     ),
     reflective: 0.3,
   ),
@@ -123,8 +123,8 @@ cube = Ra::Shape::Cube.new(
 cylinder = Ra::Shape::Cylinder.new(
   material: Ra::Material.new(
     base: Ra::Pattern::Gradient.new(
-      color_a: Ra::Color.hex('#84cc16'),
-      color_b: Ra::Color.hex('#f97316'),
+      color_a: Ra::Color.hex("#84cc16"),
+      color_b: Ra::Color.hex("#f97316"),
     ),
     reflective: 0.3,
   ),

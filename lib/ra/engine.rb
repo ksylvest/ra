@@ -8,8 +8,8 @@ module Ra
     PRECISION = 255
     PORCESSES = 8
 
-    PPM_VERSION = 'P3'
-    PPM_DEFAULT = '0 0 0'
+    PPM_VERSION = "P3"
+    PPM_DEFAULT = "0 0 0"
 
     # @param world [Ra::World]
     # @param camera [Ra::Camera]

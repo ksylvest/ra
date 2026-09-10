@@ -29,7 +29,7 @@ module Ra
       ambient_color + diffuse_color + specular_color
     end
 
-    private
+  private
 
     # @return [Ra::Shape]
     def shape

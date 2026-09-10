@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
+require "spec_helper"
 
 describe Ra::Intersection do
   subject(:intersection) { build(:intersection, shape:, ray:) }
@@ -13,7 +13,7 @@ describe Ra::Intersection do
   it { expect(intersection.ray).to(eq(ray)) }
   it { expect(intersection.t).to(eq(t)) }
 
-  describe '.hit' do
+  describe ".hit" do
     let(:shape) { build(:sphere) }
     let(:ray) { build(:ray) }
     let(:intersections) do
