@@ -131,11 +131,11 @@ module Ra
       @inverse ||= super
     end
 
-    # Avoid re-computing a transform tranpose by memoizing.
+    # Avoid re-computing a transform transpose by memoizing.
     #
     # @return [Ra::Transform]
-    def tranpose
-      @tranpose ||= super
+    def transpose
+      @transpose ||= super
     end
   end
 end
