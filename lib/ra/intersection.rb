@@ -70,7 +70,7 @@ module Ra
 
     # @return [Numeric]
     def z
-      position[1]
+      position[2]
     end
   end
 end
