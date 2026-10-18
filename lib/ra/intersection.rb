@@ -45,7 +45,7 @@ module Ra
 
     # @return [Ra::Surface]
     def surface
-      point = ray.position(t:)
+      point = position
       eyev = -ray.direction
       normalv = shape.normal(point:)
       reflectv = Tuple.reflect(ray.direction, normalv)
