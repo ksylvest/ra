@@ -23,9 +23,11 @@ module Ra
       discriminant = (b**2) - (4 * a * c)
       return [] if discriminant.negative?
 
+      sqrt_discriminant = Math.sqrt(discriminant)
+
       [
-        (-b - Math.sqrt(discriminant)) / (2 * a),
-        (-b + Math.sqrt(discriminant)) / (2 * a),
+        (-b - sqrt_discriminant) / (2 * a),
+        (-b + sqrt_discriminant) / (2 * a),
       ]
     end
   end
