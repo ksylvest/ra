@@ -78,7 +78,6 @@ module Ra
     # @return [Ra::Ray]
     def ray(x:, y:)
       pixel = transform.inverse * Vector[world_x(x:), world_y(y:), -1, Tuple::POINT]
-      origin = transform.inverse * Vector[0, 0, 0, Tuple::POINT]
 
       direction = (pixel - origin).normalize
 
@@ -106,6 +105,11 @@ module Ra
     end
 
   private
+
+    # @return [Vector]
+    def origin
+      @origin ||= transform.inverse * Vector[0, 0, 0, Tuple::POINT]
+    end
 
     # @param y [Float]
     # @return [Float]
